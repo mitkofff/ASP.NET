@@ -4,6 +4,8 @@
 
     public class Load : BaseModel<int>
     {
+        public LoadType Type { get; set; }
+
         public decimal? AxialForce { get; set; }
 
         public decimal? ShearForceY { get; set; }
@@ -14,8 +16,8 @@
 
         public decimal? BendingMomentZ { get; set; }
 
-        public string ElementId { get; set; }
+        public string CreatorId { get; set; }
 
-        public Element Element { get; set; }
+        public virtual ApplicationUser Creator { get; set; }
     }
 }

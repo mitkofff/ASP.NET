@@ -27,6 +27,8 @@ namespace StructuralDesign.Data.Models
 
         public string Company { get; set; }
 
+        public virtual UserAvatar UserAvatar { get; set; }
+
         public ICollection<Project> Projects { get; set; }
 
         // Audit info

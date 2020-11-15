@@ -24,21 +24,35 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; }
-
-        public DbSet<Bolt> Bolts { get; set; }
-
         public DbSet<Book> Books { get; set; }
 
-        public DbSet<Element> Elements { get; set; }
+        public DbSet<ElementBolt> Bolts { get; set; }
 
-        public DbSet<Message> Messages { get; set; }
+        public DbSet<ElementSteel> SteelElements { get; set; }
 
-        public DbSet<Material> Materials { get; set; }
+        public DbSet<ElementConcrete> ConcreteElements { get; set; }
+
+        public DbSet<ElementFoundation> Foundations { get; set; }
+
+        public DbSet<Load> Loads { get; set; }
+
+        public DbSet<MaterialConcrete> MaterialConcretes { get; set; }
+
+        public DbSet<MaterialRebar> MaterialRebars { get; set; }
+
+        public DbSet<MaterialSoil> MaterialSoils { get; set; }
+
+        public DbSet<MaterialSteel> MaterialSteels { get; set; }
+
+        public DbSet<Section> Sections { get; set; }
 
         public DbSet<Project> Projects { get; set; }
 
-        public DbSet<Section> Sections { get; set; }
+        public DbSet<ProjectAvatar> ProjectAvatars { get; set; }
+
+        public DbSet<Message> Messages { get; set; }
+
+        public DbSet<UserAvatar> UserAvatars { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

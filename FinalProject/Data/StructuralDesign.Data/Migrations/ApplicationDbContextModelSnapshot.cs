@@ -289,6 +289,12 @@ namespace StructuralDesign.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -296,11 +302,19 @@ namespace StructuralDesign.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
 
                     b.ToTable("Books");
                 });
@@ -310,26 +324,29 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<decimal?>("AxialForce")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("BendingMomentY")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("BendingMomentZ")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("BoltId")
+                    b.Property<int>("BoltId")
                         .HasColumnType("int");
+
+                    b.Property<int>("BoltMaterialId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<decimal?>("Length")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("MaterialId")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -344,8 +361,53 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<decimal?>("ResultFactor")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("SectionId")
+                    b.Property<int>("SectionId")
                         .HasColumnType("int");
+
+                    b.Property<int>("SectionMaterialId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BoltId");
+
+                    b.HasIndex("BoltMaterialId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("SectionId");
+
+                    b.HasIndex("SectionMaterialId");
+
+                    b.ToTable("Elements");
+                });
+
+            modelBuilder.Entity("StructuralDesign.Data.Models.Load", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal?>("AxialForce")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("BendingMomentY")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("BendingMomentZ")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ElementId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal?>("ShearForceY")
                         .HasColumnType("decimal(18,2)");
@@ -355,15 +417,9 @@ namespace StructuralDesign.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BoltId");
+                    b.HasIndex("ElementId");
 
-                    b.HasIndex("MaterialId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("SectionId");
-
-                    b.ToTable("Elements");
+                    b.ToTable("Load");
                 });
 
             modelBuilder.Entity("StructuralDesign.Data.Models.Material", b =>
@@ -372,6 +428,18 @@ namespace StructuralDesign.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -384,6 +452,8 @@ namespace StructuralDesign.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
 
                     b.ToTable("Materials");
                 });
@@ -421,23 +491,37 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Projects");
                 });
@@ -581,21 +665,38 @@ namespace StructuralDesign.Data.Migrations
                 {
                     b.HasOne("StructuralDesign.Data.Models.Bolt", "Bolt")
                         .WithMany()
-                        .HasForeignKey("BoltId");
-
-                    b.HasOne("StructuralDesign.Data.Models.Material", "Material")
-                        .WithMany()
-                        .HasForeignKey("MaterialId")
+                        .HasForeignKey("BoltId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("StructuralDesign.Data.Models.Project", null)
+                    b.HasOne("StructuralDesign.Data.Models.Material", "BoltMaterial")
+                        .WithMany()
+                        .HasForeignKey("BoltMaterialId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("StructuralDesign.Data.Models.Project", "Project")
                         .WithMany("Elements")
                         .HasForeignKey("ProjectId");
 
                     b.HasOne("StructuralDesign.Data.Models.Section", "Section")
                         .WithMany()
-                        .HasForeignKey("SectionId");
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("StructuralDesign.Data.Models.Material", "SectionMaterial")
+                        .WithMany()
+                        .HasForeignKey("SectionMaterialId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("StructuralDesign.Data.Models.Load", b =>
+                {
+                    b.HasOne("StructuralDesign.Data.Models.Element", "Element")
+                        .WithMany("Loads")
+                        .HasForeignKey("ElementId");
                 });
 
             modelBuilder.Entity("StructuralDesign.Data.Models.Message", b =>
@@ -607,9 +708,9 @@ namespace StructuralDesign.Data.Migrations
 
             modelBuilder.Entity("StructuralDesign.Data.Models.Project", b =>
                 {
-                    b.HasOne("StructuralDesign.Data.Models.ApplicationUser", null)
+                    b.HasOne("StructuralDesign.Data.Models.ApplicationUser", "Owner")
                         .WithMany("Projects")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("OwnerId");
                 });
 #pragma warning restore 612, 618
         }
