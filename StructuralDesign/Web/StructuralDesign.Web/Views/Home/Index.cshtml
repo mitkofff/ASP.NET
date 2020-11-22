@@ -1,9 +1,18 @@
 ﻿@using StructuralDesign.Common
+@model StructuralDesign.Web.ViewModels.Home.IndexViewModel
 @{
     this.ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>We have:</p>
+    <div class="col-md-3">
+        <ul class="list-group">
+            <li class="list-group-item">Users: @Model.CountOfRegistratedUsers</li>
+            <li class="list-group-item">Books: @Model.CountOfBooks</li>
+            <li class="list-group-item">Projects: @Model.CountOfProjects</li>
+            <li class="list-group-item">Sections: @Model.CountOfSections</li>
+        </ul>
+    </div>
 </div>

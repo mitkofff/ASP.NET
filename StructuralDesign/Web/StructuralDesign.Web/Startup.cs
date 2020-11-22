@@ -62,8 +62,10 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
+            services.AddTransient<IGetCountsService, GetCountsService>();
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ILoadService, LoadService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

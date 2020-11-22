@@ -11,16 +11,16 @@
         public string Name { get; set; }
 
         [Required]
-        public decimal VolumeWeight { get; set; }
+        public double VolumeWeight { get; set; }
 
         [Required]
-        public decimal DesignCompressiveStrength { get; set; }
+        public double DesignCompressiveStrength { get; set; }
 
         [Required]
-        public decimal DesignTensionStrength { get; set; }
+        public double DesignTensionStrength { get; set; }
 
         [Required]
-        public decimal ModulusOfElasticity { get; set; }
+        public double ModulusOfElasticity { get; set; }
 
         public string CreatorId { get; set; }
 

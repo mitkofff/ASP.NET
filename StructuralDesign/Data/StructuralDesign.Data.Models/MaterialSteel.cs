@@ -11,16 +11,16 @@
         public string Name { get; set; }
 
         [Required]
-        public decimal YieldStrength { get; set; }
+        public double YieldStrength { get; set; }
 
         [Required]
-        public decimal UltimateTensile { get; set; }
+        public double UltimateTensile { get; set; }
 
         [Required]
-        public decimal VolumeWeight { get; set; }
+        public double VolumeWeight { get; set; }
 
         [Required]
-        public decimal ModulusOfElasticity { get; set; }
+        public double ModulusOfElasticity { get; set; }
 
         public string CreatorId { get; set; }
 

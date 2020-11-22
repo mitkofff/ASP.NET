@@ -21,7 +21,7 @@
 
         public virtual Section Section { get; set; }
 
-        public decimal Length { get; set; }
+        public double Length { get; set; }
 
         public BoundaryCondition LeftBoundaryCondition { get; set; }
 

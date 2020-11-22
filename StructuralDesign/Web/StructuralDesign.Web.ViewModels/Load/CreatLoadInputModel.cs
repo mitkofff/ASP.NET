@@ -1,9 +1,10 @@
-﻿namespace StructuralDesign.Data.Models
+﻿namespace StructuralDesign.Web.ViewModels.Load
 {
-    using StructuralDesign.Data.Common.Models;
+    using System.ComponentModel.DataAnnotations;
 
-    public class Load : BaseModel<int>
+    public class CreatLoadInputModel
     {
+        [Required]
         public LoadType Type { get; set; }
 
         public double? AxialForce { get; set; }
@@ -16,8 +17,5 @@
 
         public double? BendingMomentZ { get; set; }
 
-        public string CreatorId { get; set; }
-
-        public virtual ApplicationUser Creator { get; set; }
     }
 }

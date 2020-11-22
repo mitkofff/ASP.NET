@@ -28,7 +28,7 @@
 
         public MaterialSteel Steel { get; set; }
 
-        public decimal Length { get; set; }
+        public double Length { get; set; }
 
         public BoundaryCondition LeftBoundaryCondition { get; set; }
 
@@ -44,7 +44,7 @@
 
         public MaterialSteel MaterialBolt { get; set; }
 
-        public decimal? ResultFactor { get; set; }
+        public double? ResultFactor { get; set; }
 
         public string Result { get; set; }
 

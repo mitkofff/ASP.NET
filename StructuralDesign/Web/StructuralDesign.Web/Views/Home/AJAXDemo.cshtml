@@ -1,0 +1,30 @@
+﻿<h1>AJAX DEMO</h1>
+
+<table id="DataTable" class="table table-sm table-striped" >
+    <tr>
+        <td>Mit</td>
+        <td>2020-11-03</td>
+    </tr>
+</table>
+<button onclick="RefreshData()" class="btn btn-success">Refresh</button>
+
+<script>
+    function RefreshData() {
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var people = JSON.parse(this.responseText);
+                for (var i = 0; i < people.length; i++) {
+                    var person = people[i];
+                    document.getElementById("DataTable").innerHTML +=
+                        "<tr><td>" + person.name + "</td><td>" + person.date + "</td></tr>"
+                    console.log(person);
+                }
+                console.log(this.responseText);
+            }
+        };
+        xhr.open("GET", "/Home/AjaxDemoData");
+        xhr.send()
+    }
+
+</script>

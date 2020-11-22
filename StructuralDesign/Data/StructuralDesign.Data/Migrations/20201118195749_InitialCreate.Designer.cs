@@ -10,8 +10,8 @@ using StructuralDesign.Data;
 namespace StructuralDesign.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201115134608_AddTables")]
-    partial class AddTables
+    [Migration("20201118195749_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -310,11 +310,11 @@ namespace StructuralDesign.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("NetoArea")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("NetoArea")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("NetoDiameter")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("NetoDiameter")
+                        .HasColumnType("float");
 
                     b.Property<int>("NominalDiameter")
                         .HasColumnType("int");
@@ -338,8 +338,8 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<int>("LeftBoundaryCondition")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Length")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Length")
+                        .HasColumnType("float");
 
                     b.Property<int>("LoadId")
                         .HasColumnType("int");
@@ -397,11 +397,11 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Height")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Height")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("HeightOfBackFill")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("HeightOfBackFill")
+                        .HasColumnType("float");
 
                     b.Property<int>("LoadId")
                         .HasColumnType("int");
@@ -468,8 +468,8 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<int>("LeftBoundaryCondition")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Length")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Length")
+                        .HasColumnType("float");
 
                     b.Property<int>("MaterialBoltId")
                         .HasColumnType("int");
@@ -487,8 +487,8 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<string>("Result")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("ResultFactor")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("ResultFactor")
+                        .HasColumnType("float");
 
                     b.Property<int>("RightBoundaryCondition")
                         .HasColumnType("int");
@@ -523,14 +523,14 @@ namespace StructuralDesign.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal?>("AxialForce")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("AxialForce")
+                        .HasColumnType("float");
 
-                    b.Property<decimal?>("BendingMomentY")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("BendingMomentY")
+                        .HasColumnType("float");
 
-                    b.Property<decimal?>("BendingMomentZ")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("BendingMomentZ")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -544,11 +544,11 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal?>("ShearForceY")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("ShearForceY")
+                        .HasColumnType("float");
 
-                    b.Property<decimal?>("ShearForceZ")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("ShearForceZ")
+                        .HasColumnType("float");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
@@ -578,11 +578,11 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("DesignCompressiveStrength")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("DesignCompressiveStrength")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("DesignTensionStrength")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("DesignTensionStrength")
+                        .HasColumnType("float");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -590,15 +590,15 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("ModulusOfElasticity")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("ModulusOfElasticity")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("VolumeWeight")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("VolumeWeight")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -631,21 +631,21 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("ModulusOfElasticity")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("ModulusOfElasticity")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("PartialSafetyFactor")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("PartialSafetyFactor")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("VolumeWeight")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("VolumeWeight")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("YieldStrength")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("YieldStrength")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -672,8 +672,8 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("DesignPressure")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("DesignPressure")
+                        .HasColumnType("float");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -685,8 +685,8 @@ namespace StructuralDesign.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("VolumeWeight")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("VolumeWeight")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -719,21 +719,21 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("ModulusOfElasticity")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("ModulusOfElasticity")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("UltimateTensile")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("UltimateTensile")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("VolumeWeight")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("VolumeWeight")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("YieldStrength")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("YieldStrength")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -849,8 +849,8 @@ namespace StructuralDesign.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Area")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Area")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -858,23 +858,23 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal?>("FlangeThickness")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("FlangeThickness")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("Height")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Height")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("InertialMomentY")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("InertialMomentY")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("InertialMomentZ")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("InertialMomentZ")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("InertialRadiusY")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("InertialRadiusY")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("InertialRadiusZ")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("InertialRadiusZ")
+                        .HasColumnType("float");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -886,20 +886,20 @@ namespace StructuralDesign.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("ResistanceMomentY")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("ResistanceMomentY")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("ResistanceMomentZ")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("ResistanceMomentZ")
+                        .HasColumnType("float");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("WebThickness")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("WebThickness")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("Width")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Width")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

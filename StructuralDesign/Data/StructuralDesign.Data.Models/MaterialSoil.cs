@@ -11,10 +11,10 @@
         public string Name { get; set; }
 
         [Required]
-        public decimal VolumeWeight { get; set; }
+        public double VolumeWeight { get; set; }
 
         [Required]
-        public decimal DesignPressure { get; set; }
+        public double DesignPressure { get; set; }
 
         public string CreatorId { get; set; }
 

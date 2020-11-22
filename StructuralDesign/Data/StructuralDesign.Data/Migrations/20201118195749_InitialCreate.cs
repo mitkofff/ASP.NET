@@ -3,26 +3,59 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StructuralDesign.Data.Migrations
 {
-    public partial class AddTables : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "CompanyName",
-                table: "AspNetUsers",
-                nullable: true);
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
 
-            migrationBuilder.AddColumn<string>(
-                name: "FirstName",
-                table: "AspNetUsers",
-                nullable: false,
-                defaultValue: "");
-
-            migrationBuilder.AddColumn<string>(
-                name: "LastName",
-                table: "AspNetUsers",
-                nullable: false,
-                defaultValue: "");
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    CompanyName = table.Column<string>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Bolts",
@@ -34,8 +67,8 @@ namespace StructuralDesign.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     NominalDiameter = table.Column<int>(nullable: false),
-                    NetoDiameter = table.Column<decimal>(nullable: false),
-                    NetoArea = table.Column<decimal>(nullable: false)
+                    NetoDiameter = table.Column<double>(nullable: false),
+                    NetoArea = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,6 +95,174 @@ namespace StructuralDesign.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ReinforcementBar",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    Diameter = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReinforcementBar", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sections",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Type = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    Height = table.Column<double>(nullable: false),
+                    Width = table.Column<double>(nullable: false),
+                    FlangeThickness = table.Column<double>(nullable: true),
+                    WebThickness = table.Column<double>(nullable: true),
+                    Area = table.Column<double>(nullable: false),
+                    InertialMomentY = table.Column<double>(nullable: false),
+                    InertialMomentZ = table.Column<double>(nullable: false),
+                    ResistanceMomentY = table.Column<double>(nullable: false),
+                    ResistanceMomentZ = table.Column<double>(nullable: false),
+                    InertialRadiusY = table.Column<double>(nullable: false),
+                    InertialRadiusZ = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sections", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Settings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Settings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    RoleId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MaterialConcretes",
                 columns: table => new
                 {
@@ -72,10 +273,10 @@ namespace StructuralDesign.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: false),
-                    VolumeWeight = table.Column<decimal>(nullable: false),
-                    DesignCompressiveStrength = table.Column<decimal>(nullable: false),
-                    DesignTensionStrength = table.Column<decimal>(nullable: false),
-                    ModulusOfElasticity = table.Column<decimal>(nullable: false),
+                    VolumeWeight = table.Column<double>(nullable: false),
+                    DesignCompressiveStrength = table.Column<double>(nullable: false),
+                    DesignTensionStrength = table.Column<double>(nullable: false),
+                    ModulusOfElasticity = table.Column<double>(nullable: false),
                     CreatorId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -100,10 +301,10 @@ namespace StructuralDesign.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: false),
-                    YieldStrength = table.Column<decimal>(nullable: false),
-                    PartialSafetyFactor = table.Column<decimal>(nullable: false),
-                    VolumeWeight = table.Column<decimal>(nullable: false),
-                    ModulusOfElasticity = table.Column<decimal>(nullable: false),
+                    YieldStrength = table.Column<double>(nullable: false),
+                    PartialSafetyFactor = table.Column<double>(nullable: false),
+                    VolumeWeight = table.Column<double>(nullable: false),
+                    ModulusOfElasticity = table.Column<double>(nullable: false),
                     CreatorId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -128,8 +329,8 @@ namespace StructuralDesign.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: false),
-                    VolumeWeight = table.Column<decimal>(nullable: false),
-                    DesignPressure = table.Column<decimal>(nullable: false),
+                    VolumeWeight = table.Column<double>(nullable: false),
+                    DesignPressure = table.Column<double>(nullable: false),
                     CreatorId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -154,10 +355,10 @@ namespace StructuralDesign.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: false),
-                    YieldStrength = table.Column<decimal>(nullable: false),
-                    UltimateTensile = table.Column<decimal>(nullable: false),
-                    VolumeWeight = table.Column<decimal>(nullable: false),
-                    ModulusOfElasticity = table.Column<decimal>(nullable: false),
+                    YieldStrength = table.Column<double>(nullable: false),
+                    UltimateTensile = table.Column<double>(nullable: false),
+                    VolumeWeight = table.Column<double>(nullable: false),
+                    ModulusOfElasticity = table.Column<double>(nullable: false),
                     CreatorId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -192,50 +393,6 @@ namespace StructuralDesign.Data.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ReinforcementBar",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    Diameter = table.Column<double>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ReinforcementBar", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Sections",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: true),
-                    Type = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
-                    Height = table.Column<decimal>(nullable: false),
-                    Width = table.Column<decimal>(nullable: false),
-                    FlangeThickness = table.Column<decimal>(nullable: true),
-                    WebThickness = table.Column<decimal>(nullable: true),
-                    Area = table.Column<decimal>(nullable: false),
-                    InertialMomentY = table.Column<decimal>(nullable: false),
-                    InertialMomentZ = table.Column<decimal>(nullable: false),
-                    ResistanceMomentY = table.Column<decimal>(nullable: false),
-                    ResistanceMomentZ = table.Column<decimal>(nullable: false),
-                    InertialRadiusY = table.Column<decimal>(nullable: false),
-                    InertialRadiusZ = table.Column<decimal>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sections", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -306,12 +463,12 @@ namespace StructuralDesign.Data.Migrations
                     Description = table.Column<string>(nullable: true),
                     SectionId = table.Column<int>(nullable: false),
                     SteelId = table.Column<int>(nullable: false),
-                    Length = table.Column<decimal>(nullable: false),
+                    Length = table.Column<double>(nullable: false),
                     LeftBoundaryCondition = table.Column<int>(nullable: false),
                     RightBoundaryCondition = table.Column<int>(nullable: false),
                     BoltId = table.Column<int>(nullable: false),
                     MaterialBoltId = table.Column<int>(nullable: false),
-                    ResultFactor = table.Column<decimal>(nullable: true),
+                    ResultFactor = table.Column<double>(nullable: true),
                     Result = table.Column<string>(nullable: true),
                     ProjectId = table.Column<string>(nullable: true)
                 },
@@ -359,11 +516,11 @@ namespace StructuralDesign.Data.Migrations
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     Type = table.Column<int>(nullable: false),
-                    AxialForce = table.Column<decimal>(nullable: true),
-                    ShearForceY = table.Column<decimal>(nullable: true),
-                    ShearForceZ = table.Column<decimal>(nullable: true),
-                    BendingMomentY = table.Column<decimal>(nullable: true),
-                    BendingMomentZ = table.Column<decimal>(nullable: true),
+                    AxialForce = table.Column<double>(nullable: true),
+                    ShearForceY = table.Column<double>(nullable: true),
+                    ShearForceZ = table.Column<double>(nullable: true),
+                    BendingMomentY = table.Column<double>(nullable: true),
+                    BendingMomentZ = table.Column<double>(nullable: true),
                     CreatorId = table.Column<string>(nullable: true),
                     ElementSteelId = table.Column<string>(nullable: true)
                 },
@@ -393,7 +550,7 @@ namespace StructuralDesign.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     SectionId = table.Column<int>(nullable: false),
-                    Length = table.Column<decimal>(nullable: false),
+                    Length = table.Column<double>(nullable: false),
                     LeftBoundaryCondition = table.Column<int>(nullable: false),
                     RightBoundaryCondition = table.Column<int>(nullable: false),
                     LoadId = table.Column<int>(nullable: false),
@@ -453,8 +610,8 @@ namespace StructuralDesign.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     SectionId = table.Column<int>(nullable: false),
-                    Height = table.Column<decimal>(nullable: false),
-                    HeightOfBackFill = table.Column<decimal>(nullable: false),
+                    Height = table.Column<double>(nullable: false),
+                    HeightOfBackFill = table.Column<double>(nullable: false),
                     LoadId = table.Column<int>(nullable: false),
                     Result = table.Column<string>(nullable: true),
                     SoilId = table.Column<int>(nullable: false),
@@ -502,6 +659,55 @@ namespace StructuralDesign.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoles_IsDeleted",
+                table: "AspNetRoles",
+                column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_IsDeleted",
+                table: "AspNetUsers",
+                column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_IsDeleted",
@@ -649,6 +855,11 @@ namespace StructuralDesign.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Settings_IsDeleted",
+                table: "Settings",
+                column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SteelElements_BoltId",
                 table: "SteelElements",
                 column: "BoltId");
@@ -692,6 +903,21 @@ namespace StructuralDesign.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
                 name: "Books");
 
             migrationBuilder.DropTable(
@@ -701,7 +927,13 @@ namespace StructuralDesign.Data.Migrations
                 name: "Foundations");
 
             migrationBuilder.DropTable(
+                name: "Settings");
+
+            migrationBuilder.DropTable(
                 name: "UserAvatars");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "ReinforcementBar");
@@ -736,17 +968,8 @@ namespace StructuralDesign.Data.Migrations
             migrationBuilder.DropTable(
                 name: "ProjectAvatars");
 
-            migrationBuilder.DropColumn(
-                name: "CompanyName",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
-                name: "FirstName",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
-                name: "LastName",
-                table: "AspNetUsers");
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

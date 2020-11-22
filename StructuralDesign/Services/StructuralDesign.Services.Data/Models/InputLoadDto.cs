@@ -1,8 +1,6 @@
-﻿namespace StructuralDesign.Data.Models
+﻿namespace StructuralDesign.Services.Data.Models
 {
-    using StructuralDesign.Data.Common.Models;
-
-    public class Load : BaseModel<int>
+    public class InputLoadDto
     {
         public LoadType Type { get; set; }
 
@@ -16,8 +14,11 @@
 
         public double? BendingMomentZ { get; set; }
 
-        public string CreatorId { get; set; }
-
-        public virtual ApplicationUser Creator { get; set; }
+        public enum LoadType
+        {
+            ServiceLoad = 1,
+            DesigLoad = 2,
+            SeismicLoad = 3,
+        }
     }
 }

@@ -21,9 +21,9 @@
 
         public virtual Section Section { get; set; }
 
-        public decimal Height { get; set; }
+        public double Height { get; set; }
 
-        public decimal HeightOfBackFill { get; set; }
+        public double HeightOfBackFill { get; set; }
 
         public int LoadId { get; set; }
 

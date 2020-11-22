@@ -15,12 +15,12 @@ namespace StructuralDesign.Data.Models
         public int NominalDiameter { get; set; }
 
         [Required]
-        public decimal NetoDiameter { get; set; }
+        public double NetoDiameter { get; set; }
 
         [Required]
         public double GrossArea => this.NominalDiameter * this.NominalDiameter * 3.14 / 4;
 
         [Required]
-        public decimal NetoArea { get; set; }
+        public double NetoArea { get; set; }
     }
 }

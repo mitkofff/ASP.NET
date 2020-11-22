@@ -22,28 +22,28 @@
         public string Name { get; set; }
 
         [Required]
-        public decimal Height { get; set; }
+        public double Height { get; set; }
 
         [Required]
-        public decimal Width { get; set; }
+        public double Width { get; set; }
 
-        public decimal? FlangeThickness { get; set; }
+        public double? FlangeThickness { get; set; }
 
-        public decimal? WebThickness { get; set; }
+        public double? WebThickness { get; set; }
 
-        public decimal Area { get; set; }
+        public double Area { get; set; }
 
-        public decimal InertialMomentY { get; set; }
+        public double InertialMomentY { get; set; }
 
-        public decimal InertialMomentZ { get; set; }
+        public double InertialMomentZ { get; set; }
 
-        public decimal ResistanceMomentY { get; set; }
+        public double ResistanceMomentY { get; set; }
 
-        public decimal ResistanceMomentZ { get; set; }
+        public double ResistanceMomentZ { get; set; }
 
-        public decimal InertialRadiusY { get; set; }
+        public double InertialRadiusY { get; set; }
 
-        public decimal InertialRadiusZ { get; set; }
+        public double InertialRadiusZ { get; set; }
 
         public virtual ICollection<ElementFoundation> Foundations { get; set; }
 
