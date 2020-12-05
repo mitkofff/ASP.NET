@@ -1,0 +1,53 @@
+﻿@model StructuralDesign.Web.ViewModels.Foundation.CreateFoundationInputModel
+@{
+    this.ViewData["Title"] = "Foundation";
+    var soils = this.Model.Soils.Select(x => new SelectListItem(x.Value, x.Key));
+    var concretes = this.Model.Concretes.Select(x => new SelectListItem(x.Value, x.Key));
+    var reinforcementMaterials = this.Model.ReinforcemenrsMaterial.Select(x => new SelectListItem(x.Value, x.Key));
+}
+<h3>@this.ViewData["Title"]</h3>
+<form method="post">
+    <div class="form-group row">
+        <div class="col-sm-3">
+            <label asp-for="Name">Name:</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div class="col-sm-3">
+            <label asp-for="SoilId">Soil:</label>
+            <select asp-for="SoilId" asp-items="soils"  class="form-control"></select>
+            <span asp-validation-for="SoilId"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-3">
+            <label asp-for="HeightOfFoundament">Height</label>
+            <input asp-for="HeightOfFoundament"  class="form-control"/>
+            <span asp-validation-for="HeightOfFoundament"></span>
+        </div>
+        <div class="col-sm-3">
+            <label asp-for="ConcreteId">Concrete:</label>
+            <select asp-for="ConcreteId" asp-items="concretes"  class="form-control"></select>
+            <span asp-validation-for="ConcreteId"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-3">
+            <label asp-for="HeightOfBackFill">HeightOfBackFill</label>
+            <input asp-for="HeightOfBackFill"  class="form-control"/>
+            <span asp-validation-for="HeightOfBackFill"></span>
+        </div>
+        <div class="col-sm-3">
+            <label asp-for="MaterialRebarId">Reinforcement:</label>
+            <select asp-for="MaterialRebarId" asp-items="reinforcementMaterials"  class="form-control"></select>
+            <span asp-validation-for="MaterialRebarId"></span>
+        </div>
+    </div>
+    <partial name="~/Views/Section/_SectionCreate.cshtml" model="Model.CreateSection" />
+    <partial name="~/Views/Load/_LoadCreate.cshtml" model="Model.CreatLoad" />
+    <div class="col-sm-1">
+        <input type="submit" bootstrap-long-button="" />
+    </div>
+</form>
+
+

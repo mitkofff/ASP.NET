@@ -1,0 +1,33 @@
+﻿@model StructuralDesign.Web.ViewModels.Projects.DetailsViewModel
+@{ 
+    this.ViewData["Title"] = Model.Name;
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+
+<h3>@Model.Id</h3>
+<div class="row">
+    <div class="col-4">
+        @foreach (var foundament in Model.Foundations)
+        {
+            <p>@foundament.Name - Section: @foundament.SectionName</p>
+        }
+        <a class="btn btn-primary" asp-controller="Foundation" asp-action="Create" asp-route-id="@Model.Id">Add Foundation</a>
+    </div>
+    <div class="col-4">
+        @foreach (var foundament in Model.Foundations)
+        {
+            <p>@foundament.Name - Section: @foundament.SectionName</p>
+        }
+        <a class="btn btn-primary" asp-controller="Foundation" asp-action="Create" asp-route-id="@Model.Id">Add Foundation</a>
+    </div>
+    <div class="col-4">
+        @foreach (var foundament in Model.Foundations)
+        {
+            <p>@foundament.Name - Section: @foundament.SectionName</p>
+        }
+        <a class="btn btn-primary" asp-controller="Foundation" asp-action="Create" asp-route-id="@Model.Id">Add Foundation</a>
+    </div>
+</div>

@@ -10,12 +10,15 @@
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly RoleManager<ApplicationRole> roleManager;
 
         public IdentityTestController(UserManager<ApplicationUser> userManager,
-                SignInManager<ApplicationUser> signInManager)
+                SignInManager<ApplicationUser> signInManager, 
+                RoleManager<ApplicationRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.roleManager = roleManager;
         }
 
         public async Task<IActionResult> Create()

@@ -27,6 +27,11 @@
                           {
                               new RolesSeeder(),
                               new SettingsSeeder(),
+                              new MaterialConcreteSeeder(),
+                              new MaterialRebarsSeeder(),
+                              new MaterialSoilSeeder(),
+                              new MaterialSteelSeeder(),
+                              new ReinforcementBarsSeeder(),
                               new SectionsSeeder(),
                           };
 

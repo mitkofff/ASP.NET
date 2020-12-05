@@ -6,13 +6,16 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>We have:</p>
-    <div class="col-md-3">
-        <ul class="list-group">
-            <li class="list-group-item">Users: @Model.CountOfRegistratedUsers</li>
-            <li class="list-group-item">Books: @Model.CountOfBooks</li>
-            <li class="list-group-item">Projects: @Model.CountOfProjects</li>
-            <li class="list-group-item">Sections: @Model.CountOfSections</li>
-        </ul>
+    <h2>Create your projects ... </h2>
+
+    <div class="fixed-bottom">
+        <div class="text-left">We have:</div>
+        <div class="row">
+            <div class="text-secondary col-2">Users: @Model.CountOfRegistratedUsers</div>
+            <div class="text-secondary col-2">Books: @Model.CountOfBooks</div>
+            <div class="text-secondary col-2">Projects: @Model.CountOfProjects</div>
+            <div class="text-secondary col-2">Sections: @Model.CountOfSections</div>
+        </div>
+        <div class="row"></div>
     </div>
 </div>

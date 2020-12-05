@@ -50,6 +50,8 @@
 
         public DbSet<ProjectAvatar> ProjectAvatars { get; set; }
 
+        public DbSet<ReinforcementBar> ReinforcementBars { get; set; }
+
         public DbSet<UserAvatar> UserAvatars { get; set; }
 
         public DbSet<Setting> Settings { get; set; }

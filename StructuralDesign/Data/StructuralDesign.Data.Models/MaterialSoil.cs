@@ -15,9 +15,5 @@
 
         [Required]
         public double DesignPressure { get; set; }
-
-        public string CreatorId { get; set; }
-
-        public virtual ApplicationUser Creator { get; set; }
     }
 }

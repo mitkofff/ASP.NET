@@ -6,6 +6,6 @@
 
     public interface ILoadService
     {
-        Task CreateAsync(CreatLoadInputModel input);
+        Task<int> CreateAsync(CreatLoadInputModel input);
     }
 }

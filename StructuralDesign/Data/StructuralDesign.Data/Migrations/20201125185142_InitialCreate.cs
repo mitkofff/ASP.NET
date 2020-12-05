@@ -76,7 +76,7 @@ namespace StructuralDesign.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Books",
+                name: "MaterialConcretes",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -86,27 +86,108 @@ namespace StructuralDesign.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    FilePath = table.Column<string>(nullable: false)
+                    VolumeWeight = table.Column<double>(nullable: false),
+                    DesignCompressiveStrength = table.Column<double>(nullable: false),
+                    DesignTensionStrength = table.Column<double>(nullable: false),
+                    ModulusOfElasticity = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Books", x => x.Id);
+                    table.PrimaryKey("PK_MaterialConcretes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ReinforcementBar",
+                name: "MaterialRebars",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    YieldStrength = table.Column<double>(nullable: false),
+                    PartialSafetyFactor = table.Column<double>(nullable: false),
+                    VolumeWeight = table.Column<double>(nullable: false),
+                    ModulusOfElasticity = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MaterialRebars", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MaterialSoils",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    VolumeWeight = table.Column<double>(nullable: false),
+                    DesignPressure = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MaterialSoils", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MaterialSteels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    YieldStrength = table.Column<double>(nullable: false),
+                    UltimateTensile = table.Column<double>(nullable: false),
+                    VolumeWeight = table.Column<double>(nullable: false),
+                    ModulusOfElasticity = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MaterialSteels", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProjectAvatars",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Extension = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectAvatars", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReinforcementBars",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
                     Diameter = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ReinforcementBar", x => x.Id);
+                    table.PrimaryKey("PK_ReinforcementBars", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,8 +204,8 @@ namespace StructuralDesign.Data.Migrations
                     Name = table.Column<string>(nullable: false),
                     Height = table.Column<double>(nullable: false),
                     Width = table.Column<double>(nullable: false),
-                    FlangeThickness = table.Column<double>(nullable: true),
-                    WebThickness = table.Column<double>(nullable: true),
+                    FlangeThickness = table.Column<double>(nullable: false),
+                    WebThickness = table.Column<double>(nullable: false),
                     Area = table.Column<double>(nullable: false),
                     InertialMomentY = table.Column<double>(nullable: false),
                     InertialMomentZ = table.Column<double>(nullable: false),
@@ -263,7 +344,7 @@ namespace StructuralDesign.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MaterialConcretes",
+                name: "Books",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -273,123 +354,16 @@ namespace StructuralDesign.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: false),
-                    VolumeWeight = table.Column<double>(nullable: false),
-                    DesignCompressiveStrength = table.Column<double>(nullable: false),
-                    DesignTensionStrength = table.Column<double>(nullable: false),
-                    ModulusOfElasticity = table.Column<double>(nullable: false),
-                    CreatorId = table.Column<string>(nullable: true)
+                    Description = table.Column<string>(nullable: true),
+                    FilePath = table.Column<string>(nullable: false),
+                    OwnerId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MaterialConcretes", x => x.Id);
+                    table.PrimaryKey("PK_Books", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MaterialConcretes_AspNetUsers_CreatorId",
-                        column: x => x.CreatorId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MaterialRebars",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
-                    YieldStrength = table.Column<double>(nullable: false),
-                    PartialSafetyFactor = table.Column<double>(nullable: false),
-                    VolumeWeight = table.Column<double>(nullable: false),
-                    ModulusOfElasticity = table.Column<double>(nullable: false),
-                    CreatorId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MaterialRebars", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MaterialRebars_AspNetUsers_CreatorId",
-                        column: x => x.CreatorId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MaterialSoils",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
-                    VolumeWeight = table.Column<double>(nullable: false),
-                    DesignPressure = table.Column<double>(nullable: false),
-                    CreatorId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MaterialSoils", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MaterialSoils_AspNetUsers_CreatorId",
-                        column: x => x.CreatorId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MaterialSteels",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
-                    YieldStrength = table.Column<double>(nullable: false),
-                    UltimateTensile = table.Column<double>(nullable: false),
-                    VolumeWeight = table.Column<double>(nullable: false),
-                    ModulusOfElasticity = table.Column<double>(nullable: false),
-                    CreatorId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MaterialSteels", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MaterialSteels_AspNetUsers_CreatorId",
-                        column: x => x.CreatorId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProjectAvatars",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: true),
-                    Extension = table.Column<string>(nullable: true),
-                    CreatorId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProjectAvatars", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProjectAvatars_AspNetUsers_CreatorId",
-                        column: x => x.CreatorId,
+                        name: "FK_Books_AspNetUsers_OwnerId",
+                        column: x => x.OwnerId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -468,7 +442,7 @@ namespace StructuralDesign.Data.Migrations
                     RightBoundaryCondition = table.Column<int>(nullable: false),
                     BoltId = table.Column<int>(nullable: false),
                     MaterialBoltId = table.Column<int>(nullable: false),
-                    ResultFactor = table.Column<double>(nullable: true),
+                    ResultFactor = table.Column<double>(nullable: false),
                     Result = table.Column<string>(nullable: true),
                     ProjectId = table.Column<string>(nullable: true)
                 },
@@ -516,23 +490,16 @@ namespace StructuralDesign.Data.Migrations
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     Type = table.Column<int>(nullable: false),
-                    AxialForce = table.Column<double>(nullable: true),
-                    ShearForceY = table.Column<double>(nullable: true),
-                    ShearForceZ = table.Column<double>(nullable: true),
-                    BendingMomentY = table.Column<double>(nullable: true),
-                    BendingMomentZ = table.Column<double>(nullable: true),
-                    CreatorId = table.Column<string>(nullable: true),
+                    AxialForce = table.Column<double>(nullable: false),
+                    ShearForceY = table.Column<double>(nullable: false),
+                    ShearForceZ = table.Column<double>(nullable: false),
+                    BendingMomentY = table.Column<double>(nullable: false),
+                    BendingMomentZ = table.Column<double>(nullable: false),
                     ElementSteelId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Loads", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Loads_AspNetUsers_CreatorId",
-                        column: x => x.CreatorId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Loads_SteelElements_ElementSteelId",
                         column: x => x.ElementSteelId,
@@ -588,9 +555,9 @@ namespace StructuralDesign.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ConcreteElements_ReinforcementBar_ReinforcementBarId",
+                        name: "FK_ConcreteElements_ReinforcementBars_ReinforcementBarId",
                         column: x => x.ReinforcementBarId,
-                        principalTable: "ReinforcementBar",
+                        principalTable: "ReinforcementBars",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -715,6 +682,11 @@ namespace StructuralDesign.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Books_OwnerId",
+                table: "Books",
+                column: "OwnerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ConcreteElements_ConcreteId",
                 table: "ConcreteElements",
                 column: "ConcreteId");
@@ -775,19 +747,9 @@ namespace StructuralDesign.Data.Migrations
                 column: "SoilId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Loads_CreatorId",
-                table: "Loads",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Loads_ElementSteelId",
                 table: "Loads",
                 column: "ElementSteelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MaterialConcretes_CreatorId",
-                table: "MaterialConcretes",
-                column: "CreatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MaterialConcretes_IsDeleted",
@@ -795,19 +757,9 @@ namespace StructuralDesign.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaterialRebars_CreatorId",
-                table: "MaterialRebars",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MaterialRebars_IsDeleted",
                 table: "MaterialRebars",
                 column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MaterialSoils_CreatorId",
-                table: "MaterialSoils",
-                column: "CreatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MaterialSoils_IsDeleted",
@@ -815,19 +767,9 @@ namespace StructuralDesign.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaterialSteels_CreatorId",
-                table: "MaterialSteels",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MaterialSteels_IsDeleted",
                 table: "MaterialSteels",
                 column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectAvatars_CreatorId",
-                table: "ProjectAvatars",
-                column: "CreatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProjectAvatars_IsDeleted",
@@ -848,6 +790,11 @@ namespace StructuralDesign.Data.Migrations
                 name: "IX_Projects_ProjectAvatarId",
                 table: "Projects",
                 column: "ProjectAvatarId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReinforcementBars_IsDeleted",
+                table: "ReinforcementBars",
+                column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sections_IsDeleted",
@@ -936,7 +883,7 @@ namespace StructuralDesign.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "ReinforcementBar");
+                name: "ReinforcementBars");
 
             migrationBuilder.DropTable(
                 name: "MaterialConcretes");
@@ -966,10 +913,10 @@ namespace StructuralDesign.Data.Migrations
                 name: "Sections");
 
             migrationBuilder.DropTable(
-                name: "ProjectAvatars");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "ProjectAvatars");
         }
     }
 }

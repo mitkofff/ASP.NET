@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\StructuralDesign.Data.Common\StructuralDesign.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\StructuralDesign.Data.Models\StructuralDesign.Data.Models.csproj" />
+    <ProjectReference Include="..\..\StructuralDesign.Common\StructuralDesign.Common.csproj" />
     <ProjectReference Include="..\..\Web\StructuralDesign.Web.ViewModels\StructuralDesign.Web.ViewModels.csproj" />
     <ProjectReference Include="..\StructuralDesign.Services.Mapping\StructuralDesign.Services.Mapping.csproj" />
   </ItemGroup>

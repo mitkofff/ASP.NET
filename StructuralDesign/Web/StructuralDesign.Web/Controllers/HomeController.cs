@@ -11,18 +11,23 @@
     using StructuralDesign.Data.Models;
     using StructuralDesign.Services.Data;
     using System;
+    using Microsoft.AspNetCore.Hosting;
 
     public class HomeController : BaseController
     {
         private readonly IGetCountsService countsService;
+        private readonly IWebHostEnvironment hostingEnvironment;
 
-        public HomeController(IGetCountsService countsService)
+        public HomeController(IGetCountsService countsService,
+            IWebHostEnvironment hostingEnvironment)
         {
             this.countsService = countsService;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult Index()
         {
+            Debug.WriteLine(hostingEnvironment.EnvironmentName);
             var countsDto = this.countsService.GetCounts();
             var viewModel = new IndexViewModel
             {
@@ -36,6 +41,10 @@
             return this.View(viewModel);
         }
 
+        public IActionResult DataDemo(int id, string name, DateTime time)
+        {
+            return this.Json(new { id, name, time });
+        }
         public IActionResult AJAXDemo()
         {
             return this.View();

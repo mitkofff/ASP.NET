@@ -13,5 +13,9 @@
 
         [Required]
         public string FilePath { get; set; }
+
+        public string OwnerId { get; set; }
+
+        public virtual ApplicationUser Owner { get; set; }
     }
 }

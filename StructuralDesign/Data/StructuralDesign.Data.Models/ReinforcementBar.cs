@@ -2,7 +2,7 @@
 {
     using StructuralDesign.Data.Common.Models;
 
-    public class ReinforcementBar : BaseModel<int>
+    public class ReinforcementBar : BaseDeletableModel<int>
     {
         public double Diameter { get; set; }
 

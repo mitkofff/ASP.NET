@@ -44,7 +44,7 @@
 
         public MaterialSteel MaterialBolt { get; set; }
 
-        public double? ResultFactor { get; set; }
+        public double ResultFactor { get; set; }
 
         public string Result { get; set; }
 

@@ -2,11 +2,12 @@
 {
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using StructuralDesign.Services.Data;
     using StructuralDesign.Web.ViewModels.Load;
 
-
+    [Authorize]
     public class LoadController : Controller
     {
         private readonly ILoadService loadService;
@@ -18,7 +19,7 @@
 
         public IActionResult Create()
         {
-            return this.View();
+            return this.View("~/Views/Load/_LoadCreate.cshtml");
         }
 
         [HttpPost]

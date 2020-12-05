@@ -16,10 +16,11 @@
             this.loadRepository = loadRepository;
         }
 
-        public async Task CreateAsync(CreatLoadInputModel input)
+        public async Task<int> CreateAsync(CreatLoadInputModel input)
         {
             var load = new Load
             {
+
                 Type = (StructuralDesign.Data.Models.LoadType)input.Type,
                 AxialForce = input.AxialForce,
                 ShearForceY = input.ShearForceY,
@@ -30,6 +31,7 @@
 
             await this.loadRepository.AddAsync(load);
             await this.loadRepository.SaveChangesAsync();
+            return load.Id;
         }
     }
 }

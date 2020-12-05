@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using StructuralDesign.Data.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace StructuralDesign.Web.ViewModels.Projects
 {
@@ -15,5 +16,9 @@ namespace StructuralDesign.Web.ViewModels.Projects
         [Required]
         [MinLength(2)]
         public string Location { get; set; }
+
+        public string OwnerId { get; set; }
+
+        public ApplicationUser Owner { get; set; }
     }
 }

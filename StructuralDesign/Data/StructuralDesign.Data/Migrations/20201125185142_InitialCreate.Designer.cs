@@ -10,7 +10,7 @@ using StructuralDesign.Data;
 namespace StructuralDesign.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201118195749_InitialCreate")]
+    [Migration("20201125185142_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -286,9 +286,14 @@ namespace StructuralDesign.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Books");
                 });
@@ -487,7 +492,7 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<string>("Result")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("ResultFactor")
+                    b.Property<double>("ResultFactor")
                         .HasColumnType("float");
 
                     b.Property<int>("RightBoundaryCondition")
@@ -523,20 +528,17 @@ namespace StructuralDesign.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double?>("AxialForce")
+                    b.Property<double>("AxialForce")
                         .HasColumnType("float");
 
-                    b.Property<double?>("BendingMomentY")
+                    b.Property<double>("BendingMomentY")
                         .HasColumnType("float");
 
-                    b.Property<double?>("BendingMomentZ")
+                    b.Property<double>("BendingMomentZ")
                         .HasColumnType("float");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ElementSteelId")
                         .HasColumnType("nvarchar(450)");
@@ -544,18 +546,16 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<double?>("ShearForceY")
+                    b.Property<double>("ShearForceY")
                         .HasColumnType("float");
 
-                    b.Property<double?>("ShearForceZ")
+                    b.Property<double>("ShearForceZ")
                         .HasColumnType("float");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
 
                     b.HasIndex("ElementSteelId");
 
@@ -571,9 +571,6 @@ namespace StructuralDesign.Data.Migrations
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -602,8 +599,6 @@ namespace StructuralDesign.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
-
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("MaterialConcretes");
@@ -618,9 +613,6 @@ namespace StructuralDesign.Data.Migrations
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -649,8 +641,6 @@ namespace StructuralDesign.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
-
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("MaterialRebars");
@@ -665,9 +655,6 @@ namespace StructuralDesign.Data.Migrations
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -690,8 +677,6 @@ namespace StructuralDesign.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
-
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("MaterialSoils");
@@ -706,9 +691,6 @@ namespace StructuralDesign.Data.Migrations
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -736,8 +718,6 @@ namespace StructuralDesign.Data.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
 
                     b.HasIndex("IsDeleted");
 
@@ -797,9 +777,6 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
@@ -813,8 +790,6 @@ namespace StructuralDesign.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
 
                     b.HasIndex("IsDeleted");
 
@@ -831,15 +806,23 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<double>("Diameter")
                         .HasColumnType("float");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReinforcementBar");
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("ReinforcementBars");
                 });
 
             modelBuilder.Entity("StructuralDesign.Data.Models.Section", b =>
@@ -858,7 +841,7 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<double?>("FlangeThickness")
+                    b.Property<double>("FlangeThickness")
                         .HasColumnType("float");
 
                     b.Property<double>("Height")
@@ -895,7 +878,7 @@ namespace StructuralDesign.Data.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.Property<double?>("WebThickness")
+                    b.Property<double>("WebThickness")
                         .HasColumnType("float");
 
                     b.Property<double>("Width")
@@ -1023,6 +1006,13 @@ namespace StructuralDesign.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("StructuralDesign.Data.Models.Book", b =>
+                {
+                    b.HasOne("StructuralDesign.Data.Models.ApplicationUser", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
+                });
+
             modelBuilder.Entity("StructuralDesign.Data.Models.ElementConcrete", b =>
                 {
                     b.HasOne("StructuralDesign.Data.Models.MaterialConcrete", "Concrete")
@@ -1130,41 +1120,9 @@ namespace StructuralDesign.Data.Migrations
 
             modelBuilder.Entity("StructuralDesign.Data.Models.Load", b =>
                 {
-                    b.HasOne("StructuralDesign.Data.Models.ApplicationUser", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId");
-
                     b.HasOne("StructuralDesign.Data.Models.ElementSteel", null)
                         .WithMany("Loads")
                         .HasForeignKey("ElementSteelId");
-                });
-
-            modelBuilder.Entity("StructuralDesign.Data.Models.MaterialConcrete", b =>
-                {
-                    b.HasOne("StructuralDesign.Data.Models.ApplicationUser", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId");
-                });
-
-            modelBuilder.Entity("StructuralDesign.Data.Models.MaterialRebar", b =>
-                {
-                    b.HasOne("StructuralDesign.Data.Models.ApplicationUser", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId");
-                });
-
-            modelBuilder.Entity("StructuralDesign.Data.Models.MaterialSoil", b =>
-                {
-                    b.HasOne("StructuralDesign.Data.Models.ApplicationUser", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId");
-                });
-
-            modelBuilder.Entity("StructuralDesign.Data.Models.MaterialSteel", b =>
-                {
-                    b.HasOne("StructuralDesign.Data.Models.ApplicationUser", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId");
                 });
 
             modelBuilder.Entity("StructuralDesign.Data.Models.Project", b =>
@@ -1176,13 +1134,6 @@ namespace StructuralDesign.Data.Migrations
                     b.HasOne("StructuralDesign.Data.Models.ProjectAvatar", "ProjectAvatar")
                         .WithMany("Projects")
                         .HasForeignKey("ProjectAvatarId");
-                });
-
-            modelBuilder.Entity("StructuralDesign.Data.Models.ProjectAvatar", b =>
-                {
-                    b.HasOne("StructuralDesign.Data.Models.ApplicationUser", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId");
                 });
 
             modelBuilder.Entity("StructuralDesign.Data.Models.UserAvatar", b =>

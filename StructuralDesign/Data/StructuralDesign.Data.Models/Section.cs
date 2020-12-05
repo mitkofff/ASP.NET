@@ -27,9 +27,9 @@
         [Required]
         public double Width { get; set; }
 
-        public double? FlangeThickness { get; set; }
+        public double FlangeThickness { get; set; }
 
-        public double? WebThickness { get; set; }
+        public double WebThickness { get; set; }
 
         public double Area { get; set; }
 

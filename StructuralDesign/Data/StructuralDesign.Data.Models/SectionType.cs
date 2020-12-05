@@ -6,7 +6,7 @@
         UPN = 2,
         SHS = 3,
         RHS = 4,
-        Rectange = 5,
+        Rectangle = 5,
         Circle = 6,
         Users = 7,
     }

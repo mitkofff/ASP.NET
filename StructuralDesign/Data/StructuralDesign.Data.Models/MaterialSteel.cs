@@ -22,8 +22,5 @@
         [Required]
         public double ModulusOfElasticity { get; set; }
 
-        public string CreatorId { get; set; }
-
-        public virtual ApplicationUser Creator { get; set; }
     }
 }
