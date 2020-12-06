@@ -8,7 +8,7 @@
 
 <hr />
 <div>
-    <button asp-controller="Project" asp-action="Create" class="btn btn-primary btn-block">Create Project</button>
+    <a asp-controller="Project" asp-action="Create" class="btn btn-primary btn-block">Create Project</a>
 </div>
 <hr />
 <div class="row"></div>
@@ -35,8 +35,8 @@
         {
             <li class="page-item"><a class="page-link"  asp-action="All" asp-route-id="@Model.PreviousPageNumber">@Model.PreviousPageNumber</a></li>
         }
-        <li class="page-item"><a class="page-link"  asp-route-id="@Model.PageNumber">@Model.PageNumber</a></li>
-        @if (Model.NextPageNumber < Model.PagesCount)
+        <li class="page-item"><a class="page-link active bg-info text-white"  asp-route-id="@Model.PageNumber">@Model.PageNumber</a></li>
+        @if (Model.NextPageNumber <= Model.PagesCount)
         {
             <li class="page-item"><a class="page-link" ` asp-action="All" asp-route-id="@Model.NextPageNumber">@Model.NextPageNumber</a></li>
         }

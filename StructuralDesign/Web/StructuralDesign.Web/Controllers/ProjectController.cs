@@ -23,19 +23,25 @@
         }
 
 
-        public IActionResult All(int id)
+        public IActionResult All(int id = 1)
         {
+            if (id < 0)
+            {
+                return this.NotFound();
+            }
+
             const int projectsPerPage = 10;
             string ownerId = this.userManager.GetUserId(this.User);
             var projects = new ProjectsListViewModel
             {
-                Projects = this.projectService.GetAllProjectOfCurrentUser<ProjectsPerUserViewModel>(id, projectsPerPage, ownerId),
-                ProjectsCountPerUser = this.projectService.GetProjectsCountPerUser(ownerId),
                 ProjectsPerPage = projectsPerPage,
+                PageNumber = id,
+                ProjectsCountPerUser = this.projectService.GetProjectsCountPerUser(ownerId),
+                Projects = this.projectService.GetAllProjectOfCurrentUser<ProjectsPerUserViewModel>(id, projectsPerPage, ownerId),
             };
+
             return this.View(projects);
         }
-
 
         public IActionResult Details(string id)
         {
@@ -43,9 +49,15 @@
             return this.View(project);
         }
 
+        public async Task<IActionResult> Delete(string id)
+        {
+            await this.projectService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.All));
+        }
+
         public IActionResult Create()
         {
-            return this.View();
+            return this.RedirectToAction(nameof(this.All));
         }
 
         [HttpPost]

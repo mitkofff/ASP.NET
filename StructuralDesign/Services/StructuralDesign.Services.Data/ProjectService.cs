@@ -41,6 +41,13 @@
             await this.projectRepositoy.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(string id)
+        {
+            var project = this.projectRepositoy.All().FirstOrDefault(x => x.Id == id);
+            this.projectRepositoy.Delete(project);
+            await this.projectRepositoy.SaveChangesAsync();
+        }
+
         public DetailsViewModel Details(string id)
         {
             var project = this.projectRepositoy.All().Where(x => x.Id == id).Select(x => new DetailsViewModel

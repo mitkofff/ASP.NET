@@ -10,10 +10,11 @@
         public ProjectAvatar()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Projects = new HashSet<Project>();
         }
 
-        public virtual ICollection<Project> Projects { get; set; }
+        public string ProjectId { get; set; }
+
+        public virtual Project Projects { get; set; }
 
         public string Extension { get; set; }
 

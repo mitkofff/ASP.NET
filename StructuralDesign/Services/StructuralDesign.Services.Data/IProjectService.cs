@@ -7,11 +7,15 @@
 
     public interface IProjectService
     {
+        int GetProjectsCountPerUser(string ownerId);
+
         Task CreateAsync(CreateProjectViewModel input, string ownerId);
+
+        public DetailsViewModel Details(string id);
+
+        Task DeleteAsync(string id);
 
         IList<T> GetAllProjectOfCurrentUser<T>(int page, int itemsPerPage, string ownerId);
 
-        int GetProjectsCountPerUser(string ownerId);
-        public DetailsViewModel Details(string id);
     }
 }

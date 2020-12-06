@@ -1,8 +1,10 @@
-﻿using StructuralDesign.Data.Models;
-using System.ComponentModel.DataAnnotations;
-
-namespace StructuralDesign.Web.ViewModels.Projects
+﻿namespace StructuralDesign.Web.ViewModels.Projects
 {
+    using System.ComponentModel.DataAnnotations;
+
+    using Microsoft.AspNetCore.Http;
+    using StructuralDesign.Data.Models;
+
     public class CreateProjectViewModel
     {
         [Required]
@@ -20,5 +22,7 @@ namespace StructuralDesign.Web.ViewModels.Projects
         public string OwnerId { get; set; }
 
         public ApplicationUser Owner { get; set; }
+
+        public IFormFile Image { get; set; }
     }
 }

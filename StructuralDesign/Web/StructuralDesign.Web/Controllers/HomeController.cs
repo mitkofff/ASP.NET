@@ -12,17 +12,22 @@
     using StructuralDesign.Services.Data;
     using System;
     using Microsoft.AspNetCore.Hosting;
+    using CloudinaryDotNet;
+    using CloudinaryDotNet.Actions;
+    using System.Threading.Tasks;
 
     public class HomeController : BaseController
     {
         private readonly IGetCountsService countsService;
         private readonly IWebHostEnvironment hostingEnvironment;
+        private readonly Cloudinary cloudinary;
 
         public HomeController(IGetCountsService countsService,
-            IWebHostEnvironment hostingEnvironment)
+            IWebHostEnvironment hostingEnvironment, Cloudinary cloudinary)
         {
             this.countsService = countsService;
             this.hostingEnvironment = hostingEnvironment;
+            this.cloudinary = cloudinary;
         }
 
         public IActionResult Index()
@@ -41,10 +46,22 @@
             return this.View(viewModel);
         }
 
+        public async Task<IActionResult> UploadPic()
+        {
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(@"D:\pics\solun_2015\IMG_20151031_151746.jpg"),
+            };
+            var uploadResult = await this.cloudinary.UploadAsync(uploadParams);
+
+            return this.Redirect("/");
+        }
+
         public IActionResult DataDemo(int id, string name, DateTime time)
         {
             return this.Json(new { id, name, time });
         }
+
         public IActionResult AJAXDemo()
         {
             return this.View();

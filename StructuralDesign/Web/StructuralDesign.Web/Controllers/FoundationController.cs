@@ -59,7 +59,7 @@
             string foundationId = await this.foundationService.CreateAsync(input, inputLoad, inputSection, id);
             await this.foundationService.AddResultAsync(foundationId);
 
-            return this.Redirect("/");
+            return this.RedirectToAction("Details", "Project", new { id = id });
         }
     }
 }

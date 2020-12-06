@@ -8,6 +8,11 @@
 <hr />
 
 <h3>@Model.Id</h3>
+<div>
+    <div>
+        <a asp-action="Delete" class="btn btn-danger btn-sm float-right" asp-route-id="@Model.Id">Delete</a>
+    </div>
+</div>
 <div class="row">
     <div class="col-4">
         @foreach (var foundament in Model.Foundations)
