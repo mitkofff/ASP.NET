@@ -13,5 +13,7 @@
         Task<string> EditAsync(CreateFoundationInputModel input, CreatLoadInputModel inputLoad, CreateSectionInputModel inputSection, string id);
 
         Task AddResultAsync(string foundamentId);
+
+        public FoundationResultViewModel Result(string id);
     }
 }

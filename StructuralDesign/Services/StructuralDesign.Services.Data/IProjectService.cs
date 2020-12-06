@@ -9,7 +9,7 @@
     {
         int GetProjectsCountPerUser(string ownerId);
 
-        Task CreateAsync(CreateProjectViewModel input, string ownerId);
+        Task CreateAsync(CreateProjectViewModel input, string ownerId, string avatarPath);
 
         public DetailsViewModel Details(string id);
 

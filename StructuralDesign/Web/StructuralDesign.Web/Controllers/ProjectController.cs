@@ -7,18 +7,23 @@
     using StructuralDesign.Data.Models;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
+    using System;
 
     [Authorize]
     public class ProjectController : Controller
     {
         private readonly IProjectService projectService;
+        private readonly IWebHostEnvironment hostingEnvironment;
         private readonly UserManager<ApplicationUser> userManager;
 
         public ProjectController(
             IProjectService projectService,
+            IWebHostEnvironment hostingEnvironment,
             UserManager<ApplicationUser> userManager)
         {
             this.projectService = projectService;
+            this.hostingEnvironment = hostingEnvironment;
             this.userManager = userManager;
         }
 
@@ -57,7 +62,7 @@
 
         public IActionResult Create()
         {
-            return this.RedirectToAction(nameof(this.All));
+            return this.View();
         }
 
         [HttpPost]
@@ -69,7 +74,18 @@
             }
 
             string ownerId = this.userManager.GetUserId(this.User);
-            await this.projectService.CreateAsync(input, ownerId);
+            string avatarPath = $"{this.hostingEnvironment.WebRootPath}/images";
+
+            try
+            {
+                await this.projectService.CreateAsync(input, ownerId, avatarPath);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                return this.View(input);
+            }
+
             return this.Redirect("/");
         }
     }

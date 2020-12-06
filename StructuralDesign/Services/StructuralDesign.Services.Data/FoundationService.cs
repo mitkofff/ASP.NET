@@ -66,6 +66,35 @@
             await this.repositoryFoundation.SaveChangesAsync();
         }
 
+        public FoundationResultViewModel Result(string id)
+        {
+            var foundationResult = this.repositoryFoundation.All().Where(x => x.Id == id).Select(x => new FoundationResultViewModel
+            {
+                Name = x.Name,
+                HeightOfFoundament = x.Height,
+                HeightOfBackFill = x.HeightOfBackFill,
+                Width = x.Section.Width,
+                Length = x.Section.Height,
+                SoilName = x.Soil.Name + " - " + x.Soil.DesignPressure,
+                ConcreteName = x.Concrete.Name,
+                MaterialRebarName = x.MaterialRebar.Name,
+                LoadType = x.Load.Type.ToString(),
+                AxialForce = x.Load.AxialForce,
+                BendingMomentY = x.Load.BendingMomentY,
+                BendingMomentZ = x.Load.BendingMomentZ,
+                ShearForceY = x.Load.ShearForceY,
+                ShearForceZ = x.Load.ShearForceZ,
+                AveragePressure = Math.Round(double.Parse(x.Result.Split("PRESSURES: ", StringSplitOptions.RemoveEmptyEntries)[1].Split(", ", StringSplitOptions.RemoveEmptyEntries)[0]), 1),
+                PressureEdge = Math.Round(double.Parse(x.Result.Split("PRESSURES: ", StringSplitOptions.RemoveEmptyEntries)[1].Split(", ", StringSplitOptions.RemoveEmptyEntries)[1]), 1),
+                PressureVertex1 = Math.Round(double.Parse(x.Result.Split("PRESSURES: ", StringSplitOptions.RemoveEmptyEntries)[1].Split(", ", StringSplitOptions.RemoveEmptyEntries)[2]), 1),
+                PressureVertex2 = Math.Round(double.Parse(x.Result.Split("PRESSURES: ", StringSplitOptions.RemoveEmptyEntries)[1].Split(", ", StringSplitOptions.RemoveEmptyEntries)[3]), 1),
+                PressureVertex3 = Math.Round(double.Parse(x.Result.Split("PRESSURES: ", StringSplitOptions.RemoveEmptyEntries)[1].Split(", ", StringSplitOptions.RemoveEmptyEntries)[4]), 1),
+                PressureVertex4 = Math.Round(double.Parse(x.Result.Split("PRESSURES: ", StringSplitOptions.RemoveEmptyEntries)[1].Split(", ", StringSplitOptions.RemoveEmptyEntries)[5]), 1),
+            }).FirstOrDefault();
+
+            return foundationResult;
+        }
+
         private double[] LoadsReduction(double axialForce, double bendingMomentY, double bendingMomentZ, double shearForceY, double shearForceZ, double foundationHeight, double foundationWidth, double foundationLength, double backfillHeight)
         {
             double totalAxialForce = axialForce + (foundationHeight * foundationLength * foundationWidth * 25 / 1000000000) + (backfillHeight * foundationLength * foundationWidth * 18 / 1000000000);
@@ -149,8 +178,10 @@
                 this.EccentricityCheck(section, loadEccentricity, sb, 6);
             }
 
-            sb.AppendLine(pressureArray.ToString());
-            return sb.ToString();
+            sb.AppendLine("PRESSURES: ");
+            sb.Append(string.Join(", ", pressureArray));
+
+            return sb.ToString().TrimEnd();
         }
 
         private void EccentricityCheck(Section section, double[] loadEccentricity, StringBuilder sb, int eccentricityFactor)
@@ -159,6 +190,7 @@
             {
                 sb.AppendLine($"The eccentricity ey is greater than B/{eccentricityFactor}!");
             }
+
             if (loadEccentricity[1] > (section.Height * GlobalConstants.mmToM / eccentricityFactor))
             {
                 sb.AppendLine($"The eccentricity ez is greater than L/{eccentricityFactor}!");
@@ -186,6 +218,16 @@
             {
                 sb.AppendLine("OK! The bearing capacity is greater than the pressure beneath");
             }
+            else
+            {
+                sb.Insert(0, "NO!");
+                sb.Insert(3, Environment.NewLine);
+            }
+        }
+
+        private double ConvertResultStringToPressureDouble(string resultString, int index)
+        {
+            return Math.Round(double.Parse(resultString.Split("PRESSURES: ", StringSplitOptions.RemoveEmptyEntries)[1].Split(", ", StringSplitOptions.RemoveEmptyEntries)[index]), 1);
         }
 
         public Task<string> EditAsync(CreateFoundationInputModel input, CreatLoadInputModel inputLoad, CreateSectionInputModel inputSection, string id)

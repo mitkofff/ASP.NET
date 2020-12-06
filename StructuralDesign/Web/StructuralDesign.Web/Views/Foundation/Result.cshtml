@@ -1,0 +1,45 @@
+﻿@model StructuralDesign.Web.ViewModels.Foundation.FoundationResultViewModel
+
+@{ 
+    this.ViewData["Title"] = "Foundation " + Model.Name + " - Result:";
+}
+
+<h3>this.ViewData["Title"]</h3>
+<div>
+    <p>Foundation: @Model.Name </p>
+    <div>H = @Model.HeightOfFoundament mm</div>
+    <div>Hb = @Model.HeightOfBackFill mm</div>
+    <div>B = @Model.Width mm</div>
+    <div>L = @Model.Length mm</div>
+    <table class="table table-bordered col-8">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Avg.</th>
+                <th scope="col">Edge</th>
+                <th scope="col">Vertex 1</th>
+                <th scope="col">Vertex 2</th>
+                <th scope="col">Vertex 3</th>
+                <th scope="col">Vertex 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row">Design Pressure</td>
+                <td>@Model.AveragePressure</td>
+                <td>@Model.PressureEdge</td>
+                <td>@Model.PressureVertex1</td>
+                <td>@Model.PressureVertex2</td>
+                <td>@Model.PressureVertex3</td>
+                <td>@Model.PressureVertex4</td>
+            </tr>
+            <tr>
+                <td scope="row">Bearing Capacity</td>
+                <td>@Model.AveragePressure</td>
+                <td>@Model.PressureEdge</td>
+                <td colspan="4" class="text-center">@Model.PressureVertex1</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

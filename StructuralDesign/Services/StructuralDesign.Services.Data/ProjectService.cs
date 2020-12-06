@@ -1,6 +1,8 @@
 ﻿namespace StructuralDesign.Services.Data
 {
+    using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -26,8 +28,9 @@
             this.foundationRepository = foundationRepository;
         }
 
-        public async Task CreateAsync(CreateProjectViewModel input, string ownerId)
+        public async Task CreateAsync(CreateProjectViewModel input, string ownerId, string avatarPath)
         {
+            var allowedExtensions = new[] { "jpg", "png", "gif" };
             var project = new Project
             {
                 Name = input.Name,
@@ -36,6 +39,27 @@
                 OwnerId = ownerId,
                 Owner = this.userRepository.All().Where(x => x.Id == ownerId).FirstOrDefault(),
             };
+
+            var extension = Path.GetExtension(input.Image.FileName).TrimStart('.');
+            if (!allowedExtensions.Any(x => extension.EndsWith(x)))
+            {
+                throw new Exception($"Invalid file extension {extension}");
+            }
+
+            var projectAvatar = new ProjectAvatar
+            {
+                Project = project,
+                Extension = extension,
+            };
+
+            Directory.CreateDirectory($"{avatarPath}");
+            var physicalPath = $"{avatarPath}/{projectAvatar.Id}.{extension}";
+            project.ProjectAvatar = projectAvatar;
+
+            using (Stream fileStream = new FileStream(physicalPath, FileMode.Create))
+            {
+                await input.Image.CopyToAsync(fileStream);
+            }
 
             await this.projectRepositoy.AddAsync(project);
             await this.projectRepositoy.SaveChangesAsync();
@@ -58,11 +82,15 @@
                 Description = x.Description,
                 ConcreteElements = x.ConcreteElements,
                 SteelElements = x.SteelElements,
+                ProjectAvatarUrl = x.ProjectAvatar.RemoteImageUrl != null ?
+                        x.ProjectAvatar.RemoteImageUrl :
+                        "/images/" + x.ProjectAvatar.Id + "." + x.ProjectAvatar.Extension,
                 Foundations = this.foundationRepository.All().Where(x => x.ProjectId == id).Select(x => new FoundationShortInfoViewModel
                 {
                     Id = x.Id,
                     Name = x.Name,
                     SectionName = x.Section.Name,
+                    Checking = x.Result.Substring(0, 3),
                 }).ToList(),
             }).FirstOrDefault();
 

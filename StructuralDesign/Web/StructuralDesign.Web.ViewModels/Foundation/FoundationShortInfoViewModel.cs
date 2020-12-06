@@ -7,5 +7,7 @@
         public string Name { get; set; }
 
         public string SectionName { get; set; }
+
+        public string Checking { get; set; }
     }
 }

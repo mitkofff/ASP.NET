@@ -61,5 +61,12 @@
 
             return this.RedirectToAction("Details", "Project", new { id = id });
         }
+
+        [Authorize]
+        public IActionResult Result(string id)
+        {
+            var viewModel = this.foundationService.Result(id);
+            return this.View(viewModel);
+        }
     }
 }
