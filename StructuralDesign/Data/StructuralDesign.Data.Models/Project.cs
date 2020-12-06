@@ -22,7 +22,6 @@
 
         public string Description { get; set; }
 
-
         public virtual ProjectAvatar ProjectAvatar { get; set; }
 
         [Required]

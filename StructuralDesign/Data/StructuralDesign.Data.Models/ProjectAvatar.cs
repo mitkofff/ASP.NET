@@ -14,7 +14,9 @@
 
         public string ProjectId { get; set; }
 
-        public virtual Project Projects { get; set; }
+        public string RemoteImageUrl { get; set; }
+
+        public virtual Project Project { get; set; }
 
         public string Extension { get; set; }
 
