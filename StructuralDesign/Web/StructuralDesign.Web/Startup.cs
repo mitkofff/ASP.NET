@@ -22,6 +22,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using CloudinaryDotNet;
+    using StructuralDesign.Services.Data.Administration;
 
     public class Startup
     {
@@ -82,6 +83,7 @@
             services.AddTransient<IFoundationService, FoundationService>();
             services.AddTransient<IProjectService, ProjectService>();
             services.AddTransient<ILibraryService, LibraryService>();
+            services.AddTransient<IBookService, BookService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

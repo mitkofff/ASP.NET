@@ -42,6 +42,7 @@
         public IEnumerable<T> GetAllBooks<T>()
         {
             return this.bookRepository.AllAsNoTracking()
+                        .Where(x => x.IsApproved == true)
                         .OrderByDescending(x => x.Name)
                         .To<T>()
                         .ToList();
@@ -50,6 +51,7 @@
         public T GetById<T>(int id)
         {
             return this.bookRepository.AllAsNoTracking()
+                        .Where(x => x.IsApproved == true)
                         .Where(x => x.Id == id)
                         .To<T>()
                         .FirstOrDefault();

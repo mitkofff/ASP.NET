@@ -4,7 +4,15 @@
     this.ViewData["Title"] = "Library";
 }
 
-<h3>@this.ViewData["Title"]</h3>
+<div class="row">
+    <div class="col-10">
+        <h3>@this.ViewData["Title"]</h3>
+    </div>
+    <div class="col-2 float-right">
+        <a class="btn btn-primary" asp-action="Upload">Upload</a>
+    </div>
+</div>
+
     
 @{int number = 1; }
 

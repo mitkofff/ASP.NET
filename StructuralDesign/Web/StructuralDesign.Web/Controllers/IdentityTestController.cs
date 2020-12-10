@@ -1,10 +1,10 @@
 ﻿namespace StructuralDesign.Web.Controllers
-{ 
+{
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using StructuralDesign.Data.Models;
-    using System;
-    using System.Threading.Tasks;
 
     public class IdentityTestController : Controller
     {
@@ -38,7 +38,7 @@
 
         public async Task<IActionResult> Login()
         {
-            var result = this.signInManager.PasswordSignInAsync("mitkofff", "241897-aA",true,true);
+            var result = this.signInManager.PasswordSignInAsync("mitkofff", "241897-aA", true, true);
             return this.Json("ok");
         }
 

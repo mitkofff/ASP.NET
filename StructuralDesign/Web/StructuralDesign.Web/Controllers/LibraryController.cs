@@ -38,12 +38,14 @@
             return this.View(book);
         }
 
+        [Authorize(Roles = "Administrator")]
         public IActionResult Upload()
         {
             return this.View();
         }
 
         [HttpPost]
+        [Authorize(Roles ="Administrator")]
         public async Task<IActionResult> Upload(BookCreateInputModel input)
         {
             if (!this.ModelState.IsValid)

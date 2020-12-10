@@ -17,5 +17,7 @@
         public string OwnerId { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }
+
+        public bool IsApproved { get; set; }
     }
 }

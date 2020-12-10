@@ -113,14 +113,3 @@
         }
     }
 }
-/*
-                 .Select(x => new ProjectsPerUserViewModel
-            {
-                Name = x.Name,
-                Location = x.Location,
-                Description = x.Description,
-                NumberOfElements = x.ConcreteElements.Count + x.SteelElements.Count + x.Foundations.Count,
-                Id = x.Id,
-            }) 
-  
-  */
