@@ -12,6 +12,8 @@
 
         public string Description { get; set; }
 
+        public string PartialDescription => this.Description.Length < 30 ? this.Description : this.Description.Substring(0, 30) + "...";
+
         public string Location { get; set; }
 
         public string OwnerId { get; set; }

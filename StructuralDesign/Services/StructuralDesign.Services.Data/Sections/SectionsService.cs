@@ -4,6 +4,7 @@
     using StructuralDesign.Data.Models;
     using StructuralDesign.Services.Data.Sections;
     using StructuralDesign.Web.ViewModels.Section;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class SectionsService : ISectionsService
@@ -49,6 +50,30 @@
             await this.sectionRepository.SaveChangesAsync();
 
             return section.Id;
+        }
+
+        public async Task EditAsync(int id, CreateSectionInputModel input)
+        {
+            var section = this.sectionRepository.All().Where(x => x.Id == id).FirstOrDefault();
+            section.Type = (StructuralDesign.Data.Models.SectionType)input.SectionType;
+            section.Name = input.SectionName;
+            section.Height = input.Height;
+            section.Width = input.Width;
+            section.WebThickness = input.WebThickness;
+            section.FlangeThickness = input.FlangeThickness;
+            if (section.Type.ToString() == "Rectangle")
+            {
+                var rectangle = new Rectangle(section.Height, section.Width);
+                section.Area = rectangle.Area();
+                section.InertialMomentY = rectangle.InertialMomentY();
+                section.InertialMomentZ = rectangle.InertialMomentZ();
+                section.InertialRadiusY = rectangle.InertialRadiusY();
+                section.InertialRadiusZ = rectangle.InertialRadiusZ();
+                section.ResistanceMomentY = rectangle.ResistanceMomentY();
+                section.ResistanceMomentZ = rectangle.ResistanceMomentZ();
+            }
+
+            await this.sectionRepository.SaveChangesAsync();
         }
     }
 }

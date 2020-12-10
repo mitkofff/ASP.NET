@@ -63,6 +63,33 @@
         }
 
         [Authorize]
+        public IActionResult Edit(string id)
+        {
+            var inputModel = this.foundationService.GetById(id);
+            inputModel.Soils = this.soilService.GetAllAsKeyValuePairs();
+            inputModel.Concretes = this.concreteService.GetAllAsKeyValuePairs();
+            inputModel.ReinforcemenrsMaterial = this.reinforcementController.GetAllElementsAsKeyValue();
+            return this.View(inputModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(string id, EditFoundationInputModel input, CreatLoadInputModel inputLoad, CreateSectionInputModel inputSection)
+        {
+            if(!this.ModelState.IsValid)
+            {
+                input.Soils = this.soilService.GetAllAsKeyValuePairs();
+                input.Concretes = this.concreteService.GetAllAsKeyValuePairs();
+                input.ReinforcemenrsMaterial = this.reinforcementController.GetAllElementsAsKeyValue();
+                return this.View(input);
+            }
+
+            await this.foundationService.EditAsync(id, input, inputLoad, inputSection);
+
+            return this.RedirectToAction("Details", "Project", new { id = input.ProjectId });
+        }
+
+        [Authorize]
         public IActionResult Result(string id)
         {
             var viewModel = this.foundationService.Result(id);

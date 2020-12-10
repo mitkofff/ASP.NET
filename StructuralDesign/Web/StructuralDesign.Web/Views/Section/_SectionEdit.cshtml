@@ -1,0 +1,107 @@
+﻿@model StructuralDesign.Web.ViewModels.Section.CreateSectionInputModel
+@using StructuralDesign.Web.ViewModels.Section
+
+@{
+    this.ViewData["Title"] = "Add Section";
+}
+<h4>@this.ViewData["Title"]</h4>
+<div class="form-group row">
+    <div class="col-sm-3">
+        <label asp-for="SectionType"></label>
+        <select asp-for="SectionType" asp-items="Html.GetEnumSelectList<SectionType>()" class="form-control">
+            <option>Select type ...</option>
+        </select>
+
+        <span asp-validation-for="SectionType" class="text-danger"></span>
+    </div>
+    <div class="col-sm-3">
+        <label asp-for="SectionName">Name</label>
+        <input asp-for="SectionName" class="form-control" value="Name" />
+        <span asp-validation-for="SectionName" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-3">
+        <label asp-for="Height">Height</label>
+        <input asp-for="Height" class="form-control" />
+        <span asp-validation-for="Height" class="text-danger"></span>
+    </div>
+    <div class="col-sm-3">
+        <label asp-for="Width">Width</label>
+        <input asp-for="Width" class="form-control" />
+        <span asp-validation-for="Width" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-sm-3">
+        <label asp-for="FlangeThickness">FlangeThickness</label>
+        <input asp-for="FlangeThickness" class="form-control" />
+        <span asp-validation-for="FlangeThickness" class="text-danger"></span>
+    </div>
+    <div class="col-sm-3">
+        <label asp-for="WebThickness">WebThickness</label>
+        <input asp-for="WebThickness" class="form-control" />
+        <span asp-validation-for="WebThickness" class="text-danger"></span>
+    </div>
+</div>
+
+
+<!--
+<h3>@this.ViewData["Title"]</h3>
+<div class="container py-1">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <form method="post">
+                <div asp-validation-summary="All"></div>
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <label asp-for="Type"></label>
+                        <select asp-for="Type" asp-items="Html.GetEnumSelectList<SectionType>()" class="form-control">
+                            <option>Select type ...</option>
+                        </select>
+
+                        <span asp-validation-for="Type" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label asp-for="Name">Name</label>
+                        <input asp-for="Name" class="form-control" value="0"/>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <label asp-for="Height">Height</label>
+                        <input asp-for="Height" value="0" class="form-control" />
+                        <span asp-validation-for="Height" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label asp-for="Width">Width</label>
+                        <input asp-for="Width" value="0" class="form-control" />
+                        <span asp-validation-for="Width" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <label asp-for="FlangeThickness">FlangeThickness</label>
+                        <input asp-for="FlangeThickness" value="0" class="form-control" />
+                        <span asp-validation-for="FlangeThickness" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label asp-for="WebThickness">WebThickness</label>
+                        <input asp-for="WebThickness" value="0" class="form-control" />
+                        <span asp-validation-for="WebThickness" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+
+                    <div class="col-sm-6">
+                        <input type="submit" bootstrap-long-button=""/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+-->

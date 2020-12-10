@@ -7,5 +7,7 @@
     public interface ISectionsService
     {
         Task<int> CreateAsync(CreateSectionInputModel input);
+
+        Task EditAsync(int id, CreateSectionInputModel input);
     }
 }

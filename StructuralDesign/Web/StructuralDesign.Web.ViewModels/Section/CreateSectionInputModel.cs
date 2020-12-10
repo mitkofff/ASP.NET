@@ -2,7 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateSectionInputModel
+    using StructuralDesign.Data.Models;
+    using StructuralDesign.Services.Mapping;
+
+    public class CreateSectionInputModel : IMapFrom<Section>
     {
         [Required]
         public SectionType SectionType { get; set; }
@@ -11,16 +14,17 @@
         public string SectionName { get; set; }
 
         [Required]
-        [Range(0, 2000)]
+        [Range(0, 10000)]
         public double Height { get; set; }
 
         [Required]
-        [Range(0, 2000)]
+        [Range(0, 10000)]
         public double Width { get; set; }
 
+        [Range(0, 10000)]
         public double FlangeThickness { get; set; }
 
+        [Range(0, 10000)]
         public double WebThickness { get; set; }
-
     }
 }

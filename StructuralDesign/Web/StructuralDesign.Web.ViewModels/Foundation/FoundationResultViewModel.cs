@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace StructuralDesign.Web.ViewModels.Foundation
+﻿namespace StructuralDesign.Web.ViewModels.Foundation
 {
+    using StructuralDesign.Data.Models;
     public class FoundationResultViewModel
     {
         public string Name { get; set; }
@@ -53,8 +50,5 @@ namespace StructuralDesign.Web.ViewModels.Foundation
         public double PressureVertex3 { get; set; }
 
         public double PressureVertex4 { get; set; }
-
-
-
     }
 }

@@ -14,6 +14,10 @@
 
         Task AddResultAsync(string foundamentId);
 
-        public FoundationResultViewModel Result(string id);
+        FoundationResultViewModel Result(string id);
+
+        Task EditAsync(string id, EditFoundationInputModel input, CreatLoadInputModel inputLoad, CreateSectionInputModel inputSection);
+
+        EditFoundationInputModel GetById(string id);
     }
 }

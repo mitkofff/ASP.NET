@@ -1,0 +1,9 @@
+﻿@using StructuralDesign.Common
+@model StructuralDesign.Web.ViewModels.Book.BookReadModeViewModel
+@{ this.ViewData["Title"] = "Home Page"; }
+
+  <!-- <embed src="@Model.FilePath" width="100%" height="100%" type="application/pdf" />
+      -->
+    <div class="embed-responsive embed-responsive-21by9"> 
+        <iframe class="embed-responsive-item" src="@Model.FilePath"></iframe>
+    </div> 

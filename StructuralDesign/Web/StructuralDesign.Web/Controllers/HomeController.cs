@@ -45,7 +45,7 @@
 
             return this.View(viewModel);
         }
-
+        /*
         public async Task<IActionResult> UploadPic()
         {
             var uploadParams = new ImageUploadParams()
@@ -55,7 +55,7 @@
             var uploadResult = await this.cloudinary.UploadAsync(uploadParams);
 
             return this.Redirect("/");
-        }
+        }*/
 
         public IActionResult DataDemo(int id, string name, DateTime time)
         {

@@ -1,40 +1,126 @@
 ﻿@model StructuralDesign.Web.ViewModels.Projects.DetailsViewModel
 @{ this.ViewData["Title"] = Model.Name; }
 
-<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <div class="col-10">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+    <div class="col-2 float-md-right">
+        <a asp-action="Delete" class="btn btn-danger btn-sm float-right" asp-route-id="@Model.Id">
+            <i class = "fas fa-trash fa-fw"  data-toggle="tooltip" data-placement="top" title="Delete"></i>
+        Delete</a>
+    </div>
+</div>
 
 <hr />
 
-<h3>@Model.Id</h3>
-<img src="@Model.ProjectAvatarUrl" width="200" class="mr-3 img-responsive">
-
-<div>
-    <div>
-        <a asp-action="Delete" class="btn btn-danger btn-sm float-right" asp-route-id="@Model.Id">Delete</a>
+<div class="row">
+    <div class="col-3">
+        <img src="@Model.ProjectAvatarUrl" width="200" class="mr-3 img-responsive">
+    </div>
+    <div class="col-9">
+        @Model.Description
     </div>
 </div>
+
+<hr />
+
 <div class="row">
     <div class="col-4">
         @foreach (var foundament in Model.Foundations)
         {
-        <div class="row">
-            <a asp-controller="Foundation" asp-action="Result" asp-route-id="@foundament.Id"> @foundament.Name - Section: @foundament.SectionName - Result: @foundament.Checking</a>
-        </div>
-        }
+<div class="row">
+    <div class="col-9">
+        @foundament.Name - Section: @foundament.SectionName - Result: @foundament.Checking
+    </div>
+    <div>
+        <a asp-controller="Foundation" asp-action="Edit" asp-route-id="@foundament.Id">
+            <i class="fas fa-edit fa-fw" data-toggle="tooltip" data-placement="top" title="Edit"></i>
+        </a>
+    </div>
+    <div>
+        <a asp-controller="Foundation" asp-action="Result" asp-route-id="@foundament.Id">
+            <i class="fas fa-poll fa-fw" data-toggle="tooltip" data-placement="top" title="Result"></i>
+        </a>
+    </div>
+    <div>
+        <a asp-controller="Foundation" asp-action="Result" asp-route-id="@foundament.Id">
+            <i class="fas fa-trash fa-fw" data-toggle="tooltip" data-placement="top" title="Delete"></i>
+        </a>
+    </div>
+</div>}
+        <a class="btn btn-primary" asp-controller="Foundation" asp-action="Create" asp-route-id="@Model.Id">Add Foundation</a>
+    </div>
+    <div class="col-4">
+        @foreach (var foundament in Model.Foundations)
+        {
+<div class="row">
+    <div class="col-9">
+        @foundament.Name - Section: @foundament.SectionName - Result: @foundament.Checking
+    </div>
+    <div>
+        <a asp-controller="Foundation" asp-action="Edit" asp-route-id="@foundament.Id">
+            <i class="fas fa-edit fa-fw" data-toggle="tooltip" data-placement="top" title="Edit"></i>
+        </a>
+    </div>
+    <div>
+        <a asp-controller="Foundation" asp-action="Result" asp-route-id="@foundament.Id">
+            <i class="fas fa-poll fa-fw" data-toggle="tooltip" data-placement="top" title="Result"></i>
+        </a>
+    </div>
+    <div>
+        <a asp-controller="Foundation" asp-action="Result" asp-route-id="@foundament.Id">
+            <i class="fas fa-poll fa-fw" data-toggle="tooltip" data-placement="top" title="Result"></i>
+        </a>
+    </div>
+</div>}
+        <a class="btn btn-primary" asp-controller="Foundation" asp-action="Create" asp-route-id="@Model.Id">Add Foundation</a>
+    </div>
+    <div class="col-4">
+        @foreach (var foundament in Model.Foundations)
+        {
+<div class="row">
+    <div class="col-9">
+        @foundament.Name - Section: @foundament.SectionName - Result: @foundament.Checking
+    </div>
+    <div>
+        <a asp-controller="Foundation" asp-action="Edit" asp-route-id="@foundament.Id">
+            <i class="fas fa-edit fa-fw" data-toggle="tooltip" data-placement="top" title="Edit"></i>
+        </a>
+    </div>
+    <div>
+        <a asp-controller="Foundation" asp-action="Result" asp-route-id="@foundament.Id">
+            <i class="fas fa-poll fa-fw" data-toggle="tooltip" data-placement="top" title="Result"></i>
+        </a>
+    </div>
+    <div>
+
+            <i class="fas fa-poll fa-fw" data-toggle="tooltip" data-placement="top" title="Result"></i>
+
+    </div>
+</div>}
         <a class="btn btn-primary" asp-controller="Foundation" asp-action="Create" asp-route-id="@Model.Id">Add Foundation</a>
     </div>
 
 
-    <div class="col-4">
-        @foreach (var foundament in Model.Foundations)
-        {
-<p>@foundament.Name - Section: @foundament.SectionName</p>}
-        <a class="btn btn-primary" asp-controller="Foundation" asp-action="Create" asp-route-id="@Model.Id">Add Foundation</a>
-    </div>
-    <div class="col-4">
-        @foreach (var foundament in Model.Foundations)
-        {
-<p>@foundament.Name - Section: @foundament.SectionName</p>}
-        <a class="btn btn-primary" asp-controller="Foundation" asp-action="Create" asp-route-id="@Model.Id">Add Foundation</a>
-    </div>
-</div>
+
+    @section Scripts{
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
+    <script>
+        $("i[title='Delete']").each(function (el) {
+            $(this).click(function () {
+                var r = confirm("Press a button!");
+                if (r == true) {
+                    txt = "You pressed OK!";
+                } else {
+                    txt = "You pressed Cancel!";
+                }
+                console.log(txt);
+            })
+        });
+    </script>
+    }

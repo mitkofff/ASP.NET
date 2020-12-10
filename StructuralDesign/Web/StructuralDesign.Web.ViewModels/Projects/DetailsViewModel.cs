@@ -1,12 +1,12 @@
 ﻿namespace StructuralDesign.Web.ViewModels.Projects
 {
     using System.Collections.Generic;
-    using AutoMapper;
+
     using StructuralDesign.Data.Models;
     using StructuralDesign.Services.Mapping;
     using StructuralDesign.Web.ViewModels.Foundation;
 
-    public class DetailsViewModel: IMapFrom<Project>
+    public class DetailsViewModel : IMapFrom<Project>
     {
         public DetailsViewModel()
         {

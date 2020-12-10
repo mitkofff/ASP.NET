@@ -8,15 +8,15 @@
     public class CreateProjectViewModel
     {
         [Required]
-        [MinLength(3)]
+        [StringLength(30, MinimumLength = 3)]
         public string Name { get; set; }
 
         [Required]
-        [MinLength(3)]
+        [StringLength(300, MinimumLength = 3)]
         public string Description { get; set; }
 
         [Required]
-        [MinLength(2)]
+        [StringLength(20, MinimumLength = 2)]
         public string Location { get; set; }
 
         public string OwnerId { get; set; }

@@ -81,6 +81,7 @@
             services.AddTransient<IReinforcementController, ReinforcementController>();
             services.AddTransient<IFoundationService, FoundationService>();
             services.AddTransient<IProjectService, ProjectService>();
+            services.AddTransient<ILibraryService, LibraryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

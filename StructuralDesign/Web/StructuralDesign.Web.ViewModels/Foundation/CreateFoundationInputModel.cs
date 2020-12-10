@@ -1,17 +1,24 @@
 ﻿namespace StructuralDesign.Web.ViewModels.Foundation
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     using StructuralDesign.Web.ViewModels.Load;
     using StructuralDesign.Web.ViewModels.Section;
 
     public class CreateFoundationInputModel
     {
+        [Required]
+        [MinLength(1)]
         public string Name { get; set; }
 
         public int SectionId { get; set; }
 
+        [Required]
+        [Range(0, 3000)]
         public double HeightOfFoundament { get; set; }
 
+        [Range(0, 3000)]
         public double HeightOfBackFill { get; set; }
 
         public int LoadId { get; set; }
