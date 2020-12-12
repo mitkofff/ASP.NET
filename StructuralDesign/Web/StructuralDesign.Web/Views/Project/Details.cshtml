@@ -52,29 +52,29 @@
         <a class="btn btn-primary" asp-controller="Foundation" asp-action="Create" asp-route-id="@Model.Id">Add Foundation</a>
     </div>
     <div class="col-4">
-        @foreach (var foundament in Model.Foundations)
+        @foreach (var elementConcrete in Model.ConcreteElements)
         {
-<div class="row">
-    <div class="col-9">
-        @foundament.Name - Section: @foundament.SectionName - Result: @foundament.Checking
-    </div>
-    <div>
-        <a asp-controller="Foundation" asp-action="Edit" asp-route-id="@foundament.Id">
-            <i class="fas fa-edit fa-fw" data-toggle="tooltip" data-placement="top" title="Edit"></i>
-        </a>
-    </div>
-    <div>
-        <a asp-controller="Foundation" asp-action="Result" asp-route-id="@foundament.Id">
-            <i class="fas fa-poll fa-fw" data-toggle="tooltip" data-placement="top" title="Result"></i>
-        </a>
-    </div>
-    <div>
-        <a asp-controller="Foundation" asp-action="Result" asp-route-id="@foundament.Id">
-            <i class="fas fa-poll fa-fw" data-toggle="tooltip" data-placement="top" title="Result"></i>
-        </a>
-    </div>
-</div>}
-        <a class="btn btn-primary" asp-controller="Foundation" asp-action="Create" asp-route-id="@Model.Id">Add Foundation</a>
+            <div class="row">
+                <div class="col-9">
+                    @elementConcrete.Name - Section: @elementConcrete.SectionId - Result:
+                </div>
+                <div>
+                    <a asp-controller="Foundation" asp-action="Edit" asp-route-id="@elementConcrete.Id">
+                        <i class="fas fa-edit fa-fw" data-toggle="tooltip" data-placement="top" title="Edit"></i>
+                    </a>
+                </div>
+                <div>
+                    <a asp-controller="Foundation" asp-action="Result" asp-route-id="@elementConcrete.Id">
+                        <i class="fas fa-poll fa-fw" data-toggle="tooltip" data-placement="top" title="Result"></i>
+                    </a>
+                </div>
+                <div>
+                    <a asp-controller="Foundation" asp-action="Result" asp-route-id="@elementConcrete.Id">
+                        <i class="fas fa-poll fa-fw" data-toggle="tooltip" data-placement="top" title="Result"></i>
+                    </a>
+                </div>
+            </div>}
+        <a class="btn btn-primary" asp-controller="ElementConcrete" asp-action="Create" asp-route-id="@Model.Id">Add Concrete Element</a>
     </div>
     <div class="col-4">
         @foreach (var foundament in Model.Foundations)

@@ -39,7 +39,7 @@
 
         public string ProjectId { get; set; }
 
-        public CreatLoadInputModel CreatLoad { get; set; }
+        public CreateLoadInputModel CreatLoad { get; set; }
 
         public CreateSectionInputModel CreateSection { get; set; }
 

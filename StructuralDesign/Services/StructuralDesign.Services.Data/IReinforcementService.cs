@@ -2,7 +2,7 @@
 
 namespace StructuralDesign.Services.Data
 {
-    public interface IReinforcementController
+    public interface IReinforcementService
     {
         IEnumerable<KeyValuePair<string, string>> GetAllElementsAsKeyValue();
     }

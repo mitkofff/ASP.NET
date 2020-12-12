@@ -16,7 +16,7 @@
             this.loadRepository = loadRepository;
         }
 
-        public async Task<int> CreateAsync(CreatLoadInputModel input)
+        public async Task<int> CreateAsync(CreateLoadInputModel input)
         {
             var load = new Load
             {
@@ -33,7 +33,7 @@
             return load.Id;
         }
 
-        public async Task EditAsync(int id, CreatLoadInputModel input)
+        public async Task EditAsync(int id, CreateLoadInputModel input)
         {
             var load = this.loadRepository.All().Where(x => x.Id == id).FirstOrDefault();
 

@@ -5,7 +5,7 @@
     using StructuralDesign.Data.Models;
     using StructuralDesign.Services.Mapping;
 
-    public class CreatLoadInputModel : IMapFrom<Load>
+    public class CreateLoadInputModel : IMapFrom<Load>
     {
         [Required]
         public LoadType Type { get; set; }

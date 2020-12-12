@@ -79,11 +79,13 @@
             services.AddTransient<ISectionsService, SectionsService>();
             services.AddTransient<ISoilService, SoilService>();
             services.AddTransient<IConcreteService, ConcreteService>();
-            services.AddTransient<IReinforcementController, ReinforcementController>();
+            services.AddTransient<IReinforcementService, ReinforcementService>();
             services.AddTransient<IFoundationService, FoundationService>();
             services.AddTransient<IProjectService, ProjectService>();
             services.AddTransient<ILibraryService, LibraryService>();
             services.AddTransient<IBookService, BookService>();
+            services.AddTransient<IElementConcreteService, ElementConcreteService>();
+            services.AddTransient<IReinforcementBarService, ReinforcementBarService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

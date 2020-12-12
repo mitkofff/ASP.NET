@@ -6,16 +6,16 @@
     using StructuralDesign.Data.Common.Repositories;
     using StructuralDesign.Data.Models;
 
-    public class ReinforcementController : IReinforcementController
+    public class ReinforcementService : IReinforcementService
     {
         private readonly IDeletableEntityRepository<MaterialRebar> reinforcementRepository;
 
-        public ReinforcementController(IDeletableEntityRepository<MaterialRebar> reinforcementRepository)
+        public ReinforcementService(IDeletableEntityRepository<MaterialRebar> reinforcementRepository)
         {
             this.reinforcementRepository = reinforcementRepository;
         }
 
-        IEnumerable<KeyValuePair<string, string>> IReinforcementController.GetAllElementsAsKeyValue()
+        IEnumerable<KeyValuePair<string, string>> IReinforcementService.GetAllElementsAsKeyValue()
         {
             return this.reinforcementRepository.All().Select(x => new
             {

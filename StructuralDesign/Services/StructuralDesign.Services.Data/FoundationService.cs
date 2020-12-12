@@ -8,7 +8,6 @@
     using StructuralDesign.Common;
     using StructuralDesign.Data.Common.Repositories;
     using StructuralDesign.Data.Models;
-    using StructuralDesign.Services.Mapping;
     using StructuralDesign.Web.ViewModels.Foundation;
     using StructuralDesign.Web.ViewModels.Load;
     using StructuralDesign.Web.ViewModels.Section;
@@ -33,7 +32,7 @@
             this.sectionsService = sectionsService;
         }
 
-        public async Task EditAsync(string id, EditFoundationInputModel input, CreatLoadInputModel inputLoad, CreateSectionInputModel inputSection)
+        public async Task EditAsync(string id, EditFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection)
         {
             var foundament = this.repositoryFoundation.All().Where(x => x.Id == id).FirstOrDefault();
 
@@ -89,7 +88,7 @@
                     WebThickness = x.Section.WebThickness,
                     FlangeThickness = x.Section.FlangeThickness,
                 },
-                CreatLoad = new CreatLoadInputModel
+                CreatLoad = new CreateLoadInputModel
                 {
                     Type = (StructuralDesign.Web.ViewModels.Load.LoadType)x.Load.Type,
                     AxialForce = x.Load.AxialForce,
@@ -103,7 +102,7 @@
         }
     
 
-        public async Task<string> CreateAsync(CreateFoundationInputModel input, CreatLoadInputModel inputLoad, CreateSectionInputModel inputSection, string projectId)
+        public async Task<string> CreateAsync(CreateFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection, string projectId)
         {
             int loadId = this.loadService.CreateAsync(inputLoad).Result;
             int sectionId = this.sectionsService.CreateAsync(inputSection).Result;
@@ -166,7 +165,7 @@
             return foundation;
         }
 
-        public async Task<string> EditAsync(CreateFoundationInputModel input, CreatLoadInputModel inputLoad, CreateSectionInputModel inputSection, string id)
+        public async Task<string> EditAsync(CreateFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection, string id)
         {
             var foundation = this.repositoryFoundation.All().FirstOrDefault(x => x.Id == id);
 

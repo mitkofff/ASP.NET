@@ -1,28 +1,28 @@
 ﻿namespace StructuralDesign.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using StructuralDesign.Data.Common.Repositories;
     using StructuralDesign.Services.Data;
     using StructuralDesign.Web.ViewModels.Foundation;
     using StructuralDesign.Web.ViewModels.Load;
     using StructuralDesign.Web.ViewModels.Section;
-    using System.Threading.Tasks;
 
     [Authorize]
     public class FoundationController : Controller
     {
         private readonly ISoilService soilService;
         private readonly IConcreteService concreteService;
-        private readonly IReinforcementController reinforcementController;
+        private readonly IReinforcementService reinforcementController;
         private readonly IFoundationService foundationService;
         private readonly ILogger logger;
 
         public FoundationController(
             ISoilService soilService,
             IConcreteService concreteService,
-            IReinforcementController reinforcementController,
+            IReinforcementService reinforcementController,
             IFoundationService foundationService, 
             ILogger<FoundationController> logger)
         {
@@ -33,7 +33,6 @@
             this.logger = logger;
         }
 
-        [Authorize]
         public IActionResult Create()
         {
             this.logger.LogInformation(1579, "User try to create foundation");
@@ -45,8 +44,7 @@
         }
 
         [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> Create(CreateFoundationInputModel input, CreatLoadInputModel inputLoad, CreateSectionInputModel inputSection, string id)
+        public async Task<IActionResult> Create(CreateFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection, string id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -62,7 +60,6 @@
             return this.RedirectToAction("Details", "Project", new { id = id });
         }
 
-        [Authorize]
         public IActionResult Edit(string id)
         {
             var inputModel = this.foundationService.GetById(id);
@@ -73,8 +70,7 @@
         }
 
         [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> Edit(string id, EditFoundationInputModel input, CreatLoadInputModel inputLoad, CreateSectionInputModel inputSection)
+        public async Task<IActionResult> Edit(string id, EditFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection)
         {
             if(!this.ModelState.IsValid)
             {
@@ -89,7 +85,6 @@
             return this.RedirectToAction("Details", "Project", new { id = input.ProjectId });
         }
 
-        [Authorize]
         public IActionResult Result(string id)
         {
             var viewModel = this.foundationService.Result(id);

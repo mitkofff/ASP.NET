@@ -23,7 +23,7 @@
         }
 
         [HttpPost]
-        public async Task <IActionResult> Create(CreatLoadInputModel input)
+        public async Task <IActionResult> Create(CreateLoadInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
