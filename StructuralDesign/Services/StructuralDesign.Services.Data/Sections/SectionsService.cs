@@ -75,5 +75,10 @@
 
             await this.sectionRepository.SaveChangesAsync();
         }
+
+        public Section GetSectionById(int id)
+        {
+            return this.sectionRepository.All().FirstOrDefault(x => x.Id == id);
+        }
     }
 }

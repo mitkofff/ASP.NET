@@ -12,66 +12,28 @@
     using StructuralDesign.Web.ViewModels.Load;
     using StructuralDesign.Web.ViewModels.Section;
 
-
     public class FoundationService : IFoundationService
     {
-        private readonly IRepository<ElementFoundation> repositoryFoundation;
+        private readonly IRepository<ElementFoundation> foundationRepository;
         private readonly IRepository<MaterialSoil> soilRepository;
         private readonly ILoadService loadService;
         private readonly ISectionsService sectionsService;
 
         public FoundationService(
-            IRepository<ElementFoundation> repositoryFoundation,
+            IRepository<ElementFoundation> foundationRepository,
             IRepository<MaterialSoil> soilRepository,
             ILoadService loadService,
             ISectionsService sectionsService)
         {
-            this.repositoryFoundation = repositoryFoundation;
+            this.foundationRepository = foundationRepository;
             this.soilRepository = soilRepository;
             this.loadService = loadService;
             this.sectionsService = sectionsService;
         }
 
-        public async Task EditAsync(string id, EditFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection)
-        {
-            var foundament = this.repositoryFoundation.All().Where(x => x.Id == id).FirstOrDefault();
-
-            foundament.Name = input.Name;
-            foundament.Height = input.HeightOfFoundament;
-            foundament.HeightOfBackFill = input.HeightOfBackFill;
-            foundament.MaterialRebarId = input.MaterialRebarId;
-            foundament.ConcreteId = input.ConcreteId;
-            foundament.SoilId = input.SoilId;
-
-            await this.sectionsService.EditAsync(foundament.SectionId, inputSection);
-            await this.loadService.EditAsync(foundament.LoadId, inputLoad);
-            /*
-            CreateSection = new CreateSectionInputModel
-                {
-                    SectionName = x.Section.Name,
-                    SectionType = (StructuralDesign.Web.ViewModels.Section.SectionType)x.Section.Type,
-                    Height = x.Section.Height,
-                    Width = x.Section.Width,
-                    WebThickness = x.Section.WebThickness,
-                    FlangeThickness = x.Section.FlangeThickness,
-                },
-                CreatLoad = new CreatLoadInputModel
-                {
-                    Type = (StructuralDesign.Web.ViewModels.Load.LoadType)x.Load.Type,
-                    AxialForce = x.Load.AxialForce,
-                    BendingMomentY = x.Load.BendingMomentY,
-                    BendingMomentZ = x.Load.BendingMomentZ,
-                    ShearForceY = x.Load.ShearForceY,
-                    ShearForceZ = x.Load.ShearForceZ,
-                },
-            }).FirstOrDefault();
-            */
-            await this.repositoryFoundation.SaveChangesAsync();
-        }
-
         public EditFoundationInputModel GetById(string id)
         {
-            var foundament = this.repositoryFoundation.All().Where(x => x.Id == id).Select(x => new EditFoundationInputModel
+            var foundament = this.foundationRepository.All().Where(x => x.Id == id).Select(x => new EditFoundationInputModel
             {
                 Name = x.Name,
                 HeightOfFoundament = x.Height,
@@ -100,7 +62,6 @@
             }).FirstOrDefault();
             return foundament;
         }
-    
 
         public async Task<string> CreateAsync(CreateFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection, string projectId)
         {
@@ -120,25 +81,25 @@
                 ProjectId = projectId,
             };
 
-            await this.repositoryFoundation.AddAsync(foundation);
-            await this.repositoryFoundation.SaveChangesAsync();
+            await this.foundationRepository.AddAsync(foundation);
+            await this.foundationRepository.SaveChangesAsync();
             return foundation.Id;
         }
 
         public async Task AddResultAsync(string foundamentId)
         {
-            ElementFoundation foundation = this.repositoryFoundation.All().FirstOrDefault(x => x.Id == foundamentId);
+            ElementFoundation foundation = this.foundationRepository.All().FirstOrDefault(x => x.Id == foundamentId);
             var loadsReduction = this.LoadsReduction(foundation.Load.AxialForce, foundation.Load.BendingMomentY, foundation.Load.BendingMomentZ, foundation.Load.ShearForceY, foundation.Load.ShearForceZ, foundation.Height, foundation.Section.Width, foundation.Section.Height, foundation.HeightOfBackFill);
             var loadEccentricity = this.Eccentricity(loadsReduction);
             var pressureArray = this.Pressure(foundation.Section, loadsReduction);
             var check = this.Check(foundation.Section, pressureArray, loadEccentricity, foundation.Soil.DesignPressure, foundation.Load.Type.ToString());
             foundation.Result = check;
-            await this.repositoryFoundation.SaveChangesAsync();
+            await this.foundationRepository.SaveChangesAsync();
         }
 
         public FoundationResultViewModel Result(string id)
         {
-            var foundation = this.repositoryFoundation.All().Where(x => x.Id == id).Select(x => new FoundationResultViewModel
+            var foundation = this.foundationRepository.All().Where(x => x.Id == id).Select(x => new FoundationResultViewModel
             {
                 Name = x.Name,
                 HeightOfFoundament = x.Height,
@@ -165,9 +126,9 @@
             return foundation;
         }
 
-        public async Task<string> EditAsync(CreateFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection, string id)
+        public async Task<string> EditAsync(EditFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection, string id)
         {
-            var foundation = this.repositoryFoundation.All().FirstOrDefault(x => x.Id == id);
+            var foundation = this.foundationRepository.All().FirstOrDefault(x => x.Id == id);
 
             int loadId = this.loadService.CreateAsync(inputLoad).Result;
             int sectionId = this.sectionsService.CreateAsync(inputSection).Result;
@@ -181,8 +142,19 @@
             foundation.LoadId = loadId;
             foundation.SectionId = sectionId;
 
-            await this.repositoryFoundation.SaveChangesAsync();
-            return foundation.Id;
+            await this.foundationRepository.SaveChangesAsync();
+            return foundation.ProjectId;
+        }
+
+        public async Task<string> DeleteAsync(string id)
+        {
+            var foundation = this.foundationRepository.All().FirstOrDefault(x => x.Id == id);
+            var projectId = foundation.ProjectId;
+
+            this.foundationRepository.Delete(foundation);
+            await this.foundationRepository.SaveChangesAsync();
+
+            return projectId;
         }
 
         private double[] LoadsReduction(double axialForce, double bendingMomentY, double bendingMomentZ, double shearForceY, double shearForceZ, double foundationHeight, double foundationWidth, double foundationLength, double backfillHeight)

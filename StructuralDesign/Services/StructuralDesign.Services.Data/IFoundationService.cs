@@ -10,14 +10,14 @@
     {
         Task<string> CreateAsync(CreateFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection, string id);
 
-        Task<string> EditAsync(CreateFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection, string id);
+        Task<string> EditAsync(EditFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection, string id);
 
         Task AddResultAsync(string foundamentId);
 
         FoundationResultViewModel Result(string id);
 
-        Task EditAsync(string id, EditFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection);
-
         EditFoundationInputModel GetById(string id);
+
+        Task<string> DeleteAsync(string id);
     }
 }
