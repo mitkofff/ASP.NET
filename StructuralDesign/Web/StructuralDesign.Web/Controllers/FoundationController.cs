@@ -72,7 +72,7 @@
         [HttpPost]
         public async Task<IActionResult> Edit(string id, EditFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection)
         {
-            if(!this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 input.Soils = this.soilService.GetAllAsKeyValuePairs();
                 input.Concretes = this.concreteService.GetAllAsKeyValuePairs();
@@ -80,15 +80,21 @@
                 return this.View(input);
             }
 
-            await this.foundationService.EditAsync(id, input, inputLoad, inputSection);
+            var projectId = await this.foundationService.EditAsync(input, inputLoad, inputSection, id);
 
-            return this.RedirectToAction("Details", "Project", new { id = input.ProjectId });
+            return this.RedirectToAction("Details", "Project", new { id = projectId });
         }
 
         public IActionResult Result(string id)
         {
             var viewModel = this.foundationService.Result(id);
             return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            string projectId = await this.foundationService.DeleteAsync(id);
+            return this.RedirectToAction("Details", "Project", new { id = projectId });
         }
     }
 }

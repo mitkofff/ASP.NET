@@ -152,16 +152,14 @@
         }
 
         // GET: Administration/Books/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
             {
                 return this.NotFound();
             }
 
-            var book = await this.bookRepository.All()
-                .Include(b => b.Owner)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var book = this.bookService.DeleteView(id);
             if (book == null)
             {
                 return this.NotFound();
@@ -176,9 +174,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var book = await this.bookRepository.All().FirstOrDefaultAsync(x => x.Id == id);
-            this.bookRepository.Delete(book);
-            await this.bookRepository.SaveChangesAsync();
+            await this.bookService.DeleteConfirmed(id);
             return this.RedirectToAction(nameof(this.Index));
         }
 

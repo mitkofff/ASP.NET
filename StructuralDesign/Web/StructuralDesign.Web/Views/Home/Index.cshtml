@@ -1,7 +1,6 @@
 ﻿@using StructuralDesign.Common
 @model StructuralDesign.Web.ViewModels.Home.IndexViewModel
 @{ this.ViewData["Title"] = "Home Page"; }
-<embed src="~/library/RegulationRD-02-20-2.pdf" type="application/pdf" />
 
 <div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
@@ -13,8 +12,6 @@
             <div class="text-secondary col-2">Books: @Model.CountOfBooks</div>
             <div class="text-secondary col-2">Projects: @Model.CountOfProjects</div>
             <div class="text-secondary col-2">Sections: @Model.CountOfSections</div>
-
-
         </div>
         <div class="row"></div>
     </div>

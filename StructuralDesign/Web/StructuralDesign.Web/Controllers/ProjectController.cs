@@ -1,14 +1,15 @@
 ﻿namespace StructuralDesign.Web.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Identity;
-    using StructuralDesign.Services.Data;
-    using StructuralDesign.Web.ViewModels.Projects;
-    using StructuralDesign.Data.Models;
+    using System;
     using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
-    using System;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using StructuralDesign.Data.Models;
+    using StructuralDesign.Services.Data;
+    using StructuralDesign.Web.ViewModels.Projects;
 
     [Authorize]
     public class ProjectController : Controller
@@ -26,7 +27,6 @@
             this.hostingEnvironment = hostingEnvironment;
             this.userManager = userManager;
         }
-
 
         public IActionResult All(int id = 1)
         {

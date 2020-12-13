@@ -1,4 +1,4 @@
-﻿@model StructuralDesign.Data.Models.Book
+﻿@model StructuralDesign.Web.ViewModels.Administration.AdmDeleteViewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -12,58 +12,40 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            Name:
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Model.Name
+        </dd>
+        <dt class="col-sm-2">
+            Description:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Description
+        </dd>
+        <dt class="col-sm-2">
+            FilePath:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.FilePath
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+            Owner:
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FilePath)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FilePath)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Owner)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Owner.Id)
+            @Model.OwnerName
         </dd class>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsApproved)
+            IsApproved:
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsApproved)
+            @Model.IsApproved
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDeleted)
+            CreatedOn:
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DeletedOn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DeletedOn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedOn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModifiedOn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModifiedOn)
+            @Model.CreatedOn
         </dd>
     </dl>
     

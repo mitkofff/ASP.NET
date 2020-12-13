@@ -1,6 +1,5 @@
 ﻿namespace StructuralDesign.Web.ViewModels.Foundation
 {
-    using StructuralDesign.Data.Models;
     public class FoundationResultViewModel
     {
         public string Name { get; set; }

@@ -55,5 +55,43 @@
 
             return this.RedirectToAction("Details", "Project", new { id = id });
         }
+
+        public IActionResult Edit(string id)
+        {
+            var viewModel = this.elementConcreteService.GetById(id);
+            viewModel.Concretes = this.concreteService.GetAllAsKeyValuePairs();
+            viewModel.ReinforcemenrsMaterial = this.reinforcementService.GetAllElementsAsKeyValue();
+            viewModel.ReinforcementBar = this.reinforcementBarService.GetAllAsKeyValuePairs();
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(string id, EditInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.Concretes = this.concreteService.GetAllAsKeyValuePairs();
+                input.ReinforcemenrsMaterial = this.reinforcementService.GetAllElementsAsKeyValue();
+                input.ReinforcementBar = this.reinforcementBarService.GetAllAsKeyValuePairs();
+                return this.View(input);
+            }
+
+            var projectId = await this.elementConcreteService.EditAsync(id, input, inputLoad, inputSection);
+
+            return this.RedirectToAction("Details", "Project", new { id = projectId });
+        }
+
+        public IActionResult Result(string id)
+        {
+            var viewModel = this.elementConcreteService.Result(id);
+            return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var projectId = await this.elementConcreteService.DeleteAsync(id);
+
+            return this.RedirectToAction("Details", "Project", new { id = projectId });
+        }
     }
 }

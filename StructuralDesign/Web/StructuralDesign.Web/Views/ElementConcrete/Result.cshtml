@@ -1,0 +1,19 @@
+﻿@model StructuralDesign.Web.ViewModels.ElementConcrete.ResultViewModel
+
+@{ 
+    this.ViewData["Title"] = "Concrete Column " + Model.Name + " - Result:";
+}
+
+<h3>this.ViewData["Title"]</h3>
+<div>
+    <p>Foundation: @Model.Name </p>
+    <div>a = @Model.SectionHeight mm</div>
+    <div>b = @Model.SectionWidth mm</div>
+    <div>L = @Model.Length mm</div>
+    <div>lambda = @Model.SlendernessCoefficient mm</div>
+    <div>fi = @Model.BucklingCoefficient mm</div>
+    <div>As = @Model.NecessaryReinforcement cm2</div>
+    <div>m = @Model.ReinforcementPercent %</div>
+    <div>Reinforcement: @Model.CountOfReinforcementBars N D</div>
+
+</div>

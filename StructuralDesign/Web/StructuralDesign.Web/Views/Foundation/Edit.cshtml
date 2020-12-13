@@ -1,6 +1,6 @@
 ﻿@model StructuralDesign.Web.ViewModels.Foundation.EditFoundationInputModel
 @{
-    this.ViewData["Title"] = "Foundation";
+    this.ViewData["Title"] = "Edit Foundation " + Model.Name;
     var soils = this.Model.Soils.Select(x => new SelectListItem(x.Value, x.Key));
     var concretes = this.Model.Concretes.Select(x => new SelectListItem(x.Value, x.Key));
     var reinforcementMaterials = this.Model.ReinforcemenrsMaterial.Select(x => new SelectListItem(x.Value, x.Key));
