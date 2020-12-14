@@ -14,9 +14,11 @@
     using Moq;
 
     using Xunit;
+    using StructuralDesign.Services.Data.Sections;
 
     public class SettingsServiceTests
     {
+        /*
         [Fact]
         public void GetCountShouldReturnCorrectNumber()
         {
@@ -31,7 +33,7 @@
             Assert.Equal(3, service.GetCount());
             repository.Verify(x => x.All(), Times.Once);
         }
-
+        */
         [Fact]
         public async Task GetCountShouldReturnCorrectNumberUsingDbContext()
         {

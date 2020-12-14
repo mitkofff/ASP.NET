@@ -111,7 +111,6 @@
             return elementConcrete.ProjectId;
         }
 
-
         public ResultViewModel Result(string id)
         {
             var result = this.elementConcreteRepository.All().Where(x => x.Id == id).Select(x => new ResultViewModel
@@ -135,10 +134,10 @@
             var necessaryReinforcement = this.NecessaryReinforcement(bucklingCoefficient, result.AxialForce, result.AxialForce, result.ConcreteDesignCompressiveStrength, result.DesignReinforcementStrength);
             var countOfReinforcementBars = this.CountOfReinforcementBars(necessaryReinforcement, result.ReinforcementBarArea);
 
-            result.SlendernessCoefficient = slendernessCoefficient;
-            result.BucklingCoefficient = bucklingCoefficient;
-            result.NecessaryReinforcement = necessaryReinforcement;
-            result.ConcreteDesignCompressiveStrength = countOfReinforcementBars;
+            result.SlendernessCoefficient = Math.Round(slendernessCoefficient, 3);
+            result.BucklingCoefficient = Math.Round(bucklingCoefficient, 3);
+            result.NecessaryReinforcement = Math.Round(necessaryReinforcement, 1);
+            result.CountOfReinforcementBars = countOfReinforcementBars;
 
             return result;
         }

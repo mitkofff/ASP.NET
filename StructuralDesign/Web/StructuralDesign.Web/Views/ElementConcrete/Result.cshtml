@@ -1,19 +1,27 @@
 ﻿@model StructuralDesign.Web.ViewModels.ElementConcrete.ResultViewModel
 
-@{ 
+@{
     this.ViewData["Title"] = "Concrete Column " + Model.Name + " - Result:";
 }
 
-<h3>this.ViewData["Title"]</h3>
-<div>
-    <p>Foundation: @Model.Name </p>
-    <div>a = @Model.SectionHeight mm</div>
-    <div>b = @Model.SectionWidth mm</div>
-    <div>L = @Model.Length mm</div>
-    <div>lambda = @Model.SlendernessCoefficient mm</div>
-    <div>fi = @Model.BucklingCoefficient mm</div>
-    <div>As = @Model.NecessaryReinforcement cm2</div>
-    <div>m = @Model.ReinforcementPercent %</div>
-    <div>Reinforcement: @Model.CountOfReinforcementBars N D</div>
-
+<h3>@this.ViewData["Title"]</h3>
+<div class="row">
+    <div class="col-md-8">
+        <p>Column: @Model.Name </p>
+        <div>a = @Model.SectionHeight mm</div>
+        <div>b = @Model.SectionWidth mm</div>
+        <div>L = @Model.Length mm</div>
+        <div>lambda = @Model.SlendernessCoefficient </div>
+        <div>fi = @Model.BucklingCoefficient </div>
+        <div>As = @Model.NecessaryReinforcement cm2</div>
+        <div>m = @Model.ReinforcementPercent %</div>
+        <div>Reinforcement: @Model.CountOfReinforcementBars N @Model.ReinforcementDiameter</div>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-2 padding: 10px">
+        <div class="row mt-3">
+            <img src="~/images/sys/colSect.png" class="img-fluid align-content-center" alt="Responsive image" />
+        </div>
+    </div>
 </div>

@@ -1,5 +1,7 @@
 ﻿namespace StructuralDesign.Web.ViewModels.ElementConcrete
 {
+    using System;
+
     public class ResultViewModel
     {
         public string Name { get; set; }
@@ -24,7 +26,7 @@
 
         public double NecessaryReinforcement { get; set; }
 
-        public double ReinforcementPercent => this.NecessaryReinforcement / this.SectionArea * 100;
+        public double ReinforcementPercent => Math.Round(this.NecessaryReinforcement * 100 / (this.SectionArea / 100), 3);
 
         public double ReinforcementDiameter { get; set; }
 
