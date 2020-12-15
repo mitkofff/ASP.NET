@@ -73,7 +73,7 @@
 
             // Application services
             services.AddTransient<IGetCountsService, GetCountsService>();
-            services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ILoadService, LoadService>();
             services.AddTransient<ISectionsService, SectionsService>();

@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Satyaprakash Bhubaneswar Google Map";
+}
+
+<title>@ViewBag.Title</title>
+
+<form>
+
+
+</form>
+
+<fieldset>
+
+    <div id="googleMap" style="height:400px;width:40%;"></div>
+    <script>
+        function myMap() {
+            var myCenter = new google.maps.LatLng(42.682334, 23.253185);
+            var mapProp = { center: myCenter, zoom: 16, scrollwheel: false, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            var marker = new google.maps.Marker({ position: myCenter });
+            marker.setMap(map);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP1lnuRya7dEJVBOX3QqdYkzbPb2RvE8k&callback=myMap"></script>
+</fieldset>

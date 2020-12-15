@@ -24,20 +24,24 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if (this.User.Identity.IsAuthenticated)
-                        {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Library" asp-action="All">Library</a>
-                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Project" asp-action="All">All Projects</a>
-                                    </li>}
-                        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                       @if (this.User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Books" asp-action="Index">BooksAdmin</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Project" asp-action="All">All Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Library" asp-action="All">Library</a>
                             </li>
                         }
+                        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                         {
+                             <li class="nav-item">
+                                 <a class="nav-link text-dark" asp-area="Administration" asp-controller="Books" asp-action="Index">BooksAdmin</a>
+                             </li>
+                         }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
+                        </li>
                     </ul>
                 </div>
             </div>
