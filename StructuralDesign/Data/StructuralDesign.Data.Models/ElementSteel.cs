@@ -11,7 +11,6 @@
         public ElementSteel()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Loads = new HashSet<Load>();
         }
 
         [Required]
@@ -34,7 +33,9 @@
 
         public BoundaryCondition RightBoundaryCondition { get; set; }
 
-        public virtual ICollection<Load> Loads { get; set; }
+        public int LoadId { get; set; }
+
+        public virtual Load Load { get; set; }
 
         public int BoltId { get; set; }
 

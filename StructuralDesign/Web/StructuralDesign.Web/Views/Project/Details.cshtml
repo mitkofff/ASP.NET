@@ -71,36 +71,36 @@
                 </div>
                 <div>
                     <a asp-controller="ElementConcrete" asp-action="Delete" asp-route-id="@elementConcrete.Id">
-                        <i class="fas fa-trash fa-fw" data-toggle="tooltip" data-placement="top" title="Result"></i>
+                        <i class="fas fa-trash fa-fw" data-toggle="tooltip" data-placement="top" title="Delete"></i>
                     </a>
                 </div>
             </div>}
         <a class="btn btn-primary" asp-controller="ElementConcrete" asp-action="Create" asp-route-id="@Model.Id">Add Concrete Element</a>
     </div>
     <div class="col-4">
-        @foreach (var foundament in Model.Foundations)
+        @foreach (var elementSteel in Model.SteelElements)
         {
 <div class="row">
     <div class="col-9">
-        @foundament.Name - Section: @foundament.SectionName - Result: @foundament.Checking
+        @elementSteel.Name - Section: @elementSteel.SectionId - Result: 
     </div>
     <div>
-        <a asp-controller="Foundation" asp-action="Edit" asp-route-id="@foundament.Id">
+        <a asp-controller="ElementSteel" asp-action="Edit" asp-route-id="@elementSteel.Id">
             <i class="fas fa-edit fa-fw" data-toggle="tooltip" data-placement="top" title="Edit"></i>
         </a>
     </div>
     <div>
-        <a asp-controller="Foundation" asp-action="Result" asp-route-id="@foundament.Id">
+        <a asp-controller="ElementSteel" asp-action="Result" asp-route-id="@elementSteel.Id">
             <i class="fas fa-poll fa-fw" data-toggle="tooltip" data-placement="top" title="Result"></i>
         </a>
     </div>
     <div>
-
-            <i class="fas fa-poll fa-fw" data-toggle="tooltip" data-placement="top" title="Result"></i>
-
+        <a asp-controller="ElementSteel" asp-action="Delete" asp-route-id="@elementSteel.Id">
+            <i class="fas fa-trash fa-fw" data-toggle="tooltip" data-placement="top" title="Delete"></i>
+        </a>
     </div>
 </div>}
-        <a class="btn btn-primary" asp-controller="Foundation" asp-action="Create" asp-route-id="@Model.Id">Add Foundation</a>
+        <a class="btn btn-primary" asp-controller="ElementSteel" asp-action="Create" asp-route-id="@Model.Id">Add Steel Element</a>
     </div>
 
 

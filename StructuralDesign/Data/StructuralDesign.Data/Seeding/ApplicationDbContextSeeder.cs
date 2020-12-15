@@ -33,6 +33,7 @@
                               new MaterialSteelSeeder(),
                               new ReinforcementBarsSeeder(),
                               new SectionsSeeder(),
+                              new BoltSeeder(),
                           };
 
             foreach (var seeder in seeders)

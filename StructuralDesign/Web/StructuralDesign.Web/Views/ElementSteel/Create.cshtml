@@ -1,0 +1,74 @@
+﻿@model StructuralDesign.Web.ViewModels.ElementSteel.CreateInputModel
+@{ this.ViewData["Title"] = "Steel Beam";
+    var steel = this.Model.Steel.Select(x => new SelectListItem(x.Value, x.Key));
+    var bolts = this.Model.Bolts.Select(x => new SelectListItem(x.Value, x.Key));
+    var materialBolts = this.Model.MaterialBolts.Select(x => new SelectListItem(x.Value, x.Key)); }
+<h3>@this.ViewData["Title"]</h3>
+<div class="form-group row">
+    <div class="col-md-8">
+        <form method="post">
+            <div class="form-group row">
+                <div class="col-sm-8">
+                    <label asp-for="Name">Name:</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div class="col-sm-4">
+                    <label asp-for="SteelId">Concrete:</label>
+                    <select asp-for="SteelId" asp-items="steel" class="form-control"></select>
+                    <span asp-validation-for="SteelId"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label asp-for="MaterialBoltId">Reinforcement:</label>
+                    <select asp-for="MaterialBoltId" asp-items="materialBolts" class="form-control"></select>
+                    <span asp-validation-for="MaterialBoltId"></span>
+                </div>
+                <div class="col-sm-6">
+                    <label asp-for="BoltId">Bar:</label>
+                    <select asp-for="BoltId" asp-items="bolts" class="form-control"></select>
+                    <span asp-validation-for="BoltId"></span>
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <img src="~/images/sys/beamFixedFixed.png" class="img-fluid" alt="Responsive image" />
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-1">
+                    <label asp-for="LeftBoundaryCondition">Bottom</label>
+                    <input asp-for="LeftBoundaryCondition" class="form-control" />
+                    <span asp-validation-for="LeftBoundaryCondition"></span>
+                </div>
+                <div class="col-sm-2">
+                    <label asp-for="Length">L, mm</label>
+                    <input asp-for="Length" class="form-control"></input>
+                    <span asp-validation-for="Length"></span>
+                </div>
+                <div class="col-sm-1">
+                    <label asp-for="RightBoundaryCondition">Top</label>
+                    <input asp-for="RightBoundaryCondition" class="form-control" />
+                    <span asp-validation-for="RightBoundaryCondition"></span>
+                </div>
+            </div>
+            <partial name="~/Views/Section/_SectionCreate.cshtml" model="Model.CreateSection" />
+            <partial name="~/Views/Load/_LoadCreate.cshtml" model="Model.CreatLoad" />
+            <div class="col-sm-1">
+                <input type="submit" bootstrap-long-button="" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-2 padding: 10px">
+        <div class="row mt-3">
+            <img src="~/images/sys/colSect.png" class="img-fluid align-content-center" alt="Responsive image" />
+        </div>
+        <div class="row mt-5">
+            <img src="~/images/sys/colAxialForce.png" class="img-fluid align-content-center" alt="Responsive image" />
+        </div>
+    </div>
+</div>
+
+

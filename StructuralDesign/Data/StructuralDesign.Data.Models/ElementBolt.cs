@@ -18,7 +18,7 @@ namespace StructuralDesign.Data.Models
         public double NetoDiameter { get; set; }
 
         [Required]
-        public double GrossArea => this.NominalDiameter * this.NominalDiameter * 3.14 / 4;
+        public double GrossArea => this.NominalDiameter * this.NominalDiameter * 3.14 / 400;
 
         [Required]
         public double NetoArea { get; set; }

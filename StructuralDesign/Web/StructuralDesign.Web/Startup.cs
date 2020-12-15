@@ -86,6 +86,9 @@
             services.AddTransient<IBookService, BookService>();
             services.AddTransient<IElementConcreteService, ElementConcreteService>();
             services.AddTransient<IReinforcementBarService, ReinforcementBarService>();
+            services.AddTransient<ISteelService, SteelService>();
+            services.AddTransient<IBoltService, BoltService>();
+            services.AddTransient<IElementSteelService, ElementSteelService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
