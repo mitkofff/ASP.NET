@@ -10,7 +10,7 @@
     {
         Task<string> CreateAsync(CreateInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection, string projectId);
 
-        ResultViewModel Result(string id);
+        ResultViewModel ResultObject(string id);
 
         EditInputModel GetById(string id);
 

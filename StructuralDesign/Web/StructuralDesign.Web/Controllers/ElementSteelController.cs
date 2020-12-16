@@ -80,7 +80,7 @@
 
         public IActionResult Result(string id)
         {
-            var viewModel = this.elementSteelService.Result(id);
+            var viewModel = this.elementSteelService.ResultObject(id);
             return this.View(viewModel);
         }
 

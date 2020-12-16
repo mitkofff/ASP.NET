@@ -1,10 +1,14 @@
 ﻿@using StructuralDesign.Common
 @model StructuralDesign.Web.ViewModels.Home.IndexViewModel
-@{ this.ViewData["Title"] = "Home Page"; }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <h2>Create your projects ... </h2>
+    @{ this.ViewData["Title"] = "Home Page"; }
+    <div class="bg">
+        <div id="hello">
+            <h1 class="display-4"> Welcome to @GlobalConstants.SystemName! </h1>
+            <h2>Create your projects ... </h2>
+        </div>
+    </div>
     <div class="fixed-bottom">
         <div class="text-left">We have:</div>
         <div class="row">

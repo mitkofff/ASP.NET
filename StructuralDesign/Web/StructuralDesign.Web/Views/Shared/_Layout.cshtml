@@ -10,6 +10,7 @@
     <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
 </head>
 <body>
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -24,21 +25,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                       @if (this.User.Identity.IsAuthenticated)
+                        @if (this.User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Project" asp-action="All">All Projects</a>
-                            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Project" asp-action="All">All Projects</a>
+            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Library" asp-action="All">Library</a>
-                            </li>
-                        }
+                            </li>}
                         @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                         {
-                             <li class="nav-item">
-                                 <a class="nav-link text-dark" asp-area="Administration" asp-controller="Books" asp-action="Index">BooksAdmin</a>
-                             </li>
-                         }
+                        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Books" asp-action="Index">BooksAdmin</a>
+            </li>}
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
                         </li>
@@ -47,19 +46,19 @@
             </div>
         </nav>
     </header>
-
     <div class="container">
         <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            @this.RenderBody()
-        </main>
-    </div>
+            <main role="main" class="pb-3">
+                @this.RenderBody()
+            </main>
+        </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>

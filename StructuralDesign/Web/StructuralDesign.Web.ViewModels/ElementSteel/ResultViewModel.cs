@@ -8,34 +8,44 @@
 
         public double Length { get; set; }
 
-        public double SectionWidth { get; set; }
+        public double Width { get; set; }
 
-        public double SectionHeight { get; set; }
+        public double Height { get; set; }
 
-        public double SectionArea { get; set; }
+        public double WebThickness { get; set; }
+
+        public double ResistanceMomentY { get; set; }
+
+        public double StaticMomentY { get; set; }
+
+        public double InertialMomentY { get; set; }
 
         public string LeftBoundaryCondition { get; set; }
 
         public string RightBoundaryCondition { get; set; }
 
-        public double AxialForce { get; set; }
+        public double ShearForceZ { get; set; }
 
-        public double SlendernessCoefficient { get; set; }
+        public double BendingMomentY { get; set; }
 
-        public double BucklingCoefficient { get; set; }
+        public double YieldStrengthForElement { get; set; }
 
-        public double NecessaryReinforcement { get; set; }
+        public double PreassureBendingMomentY { get; set; }
 
-        public double ReinforcementPercent => Math.Round(this.NecessaryReinforcement * 100 / (this.SectionArea / 100), 3);
+        public double PreassureShearForceZ { get; set; }
 
-        public double ReinforcementDiameter { get; set; }
+        public double ResultFactorBendingMomentY { get; set; }
 
-        public double ReinforcementBarArea { get; set; }
+        public double ResultFactorShearForceZ { get; set; }
 
-        public double ConcreteDesignCompressiveStrength { get; set; }
+        public string ResultConclusion { get; set; }
 
-        public double DesignReinforcementStrength { get; set; }
+        public double BoltDiameter { get; set; }
 
-        public double CountOfReinforcementBars { get; set; }
+        public double BoltGrossArea { get; set; }
+
+        public double CountOfBolt { get; set; }
+
+        public double YieldStrengthForBolt { get; set; }
     }
 }

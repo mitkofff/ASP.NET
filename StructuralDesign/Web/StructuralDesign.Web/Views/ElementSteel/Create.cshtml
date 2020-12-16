@@ -62,13 +62,37 @@
     <div class="col-md-1">
     </div>
     <div class="col-md-2 padding: 10px">
-        <div class="row mt-3">
-            <img src="~/images/sys/colSect.png" class="img-fluid align-content-center" alt="Responsive image" />
+        <div  class="row mt-3">
+            <img id="section" src="~/images/sys/colSect.png" class="img-fluid align-content-center" alt="Responsive image" />
         </div>
-        <div class="row mt-5">
+        <div id="3d" class="row mt-5">
             <img src="~/images/sys/colAxialForce.png" class="img-fluid align-content-center" alt="Responsive image" />
         </div>
     </div>
 </div>
 
 
+<script type='text/javascript'>
+    function UpdateImage(source) {
+        // Grab your image
+        var image = document.getElementById('section');
+
+        // Based on your selection, set your image
+        switch (source.value) {
+            case '5':
+                // Set the Female Image
+                image.style.display = 'inline;'
+                image.src = "../wwwroot/images/sys/colSect.png";
+                break;
+            case '1':
+                // Set the Male Image
+                image.style.display = 'inline';
+                image.src = "../images/sys/colAxialForce.png";
+                break;
+            default:
+                // Otherwise, hide the element
+                image.src = '';
+                image.style.display = 'none;'
+        }
+    }
+</script>
