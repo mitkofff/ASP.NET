@@ -35,7 +35,7 @@
                 return this.NotFound();
             }
 
-            const int projectsPerPage = 10;
+            const int projectsPerPage = 5;
             string ownerId = this.userManager.GetUserId(this.User);
             var projects = new ProjectsListViewModel
             {

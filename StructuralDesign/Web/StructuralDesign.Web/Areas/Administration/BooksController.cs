@@ -31,9 +31,9 @@
         }
 
         // GET: Administration/Books
-        public async Task<IActionResult> Index(int id = 1)
+        public IActionResult Index(int id = 1)
         {
-            if (id < 1)
+            if (id < 0)
             {
                 return this.NotFound();
             }

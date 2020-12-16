@@ -79,7 +79,13 @@
                 resultUrl = result.Uri.AbsoluteUri;
             }
 
-            return resultUrl;
+            var url = resultUrl;
+            if (resultUrl.Substring(0, 5) == "http:")
+            {
+                url = "https:" + resultUrl.Substring(5, resultUrl.Length-5);
+            }
+
+            return url;
         }
     }
 }
