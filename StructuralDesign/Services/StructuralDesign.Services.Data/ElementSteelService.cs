@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     using Newtonsoft.Json;
     using StructuralDesign.Data.Common.Repositories;
     using StructuralDesign.Data.Models;
@@ -127,6 +128,7 @@
             var result = this.elementSteelRepository.All().Where(x => x.Id == id).Select(x => new ResultViewModel
             {
                 Name = x.Name,
+                SectionType = x.Section.Type.ToString(),
                 Height = x.Section.Height,
                 Width = x.Section.Width,
                 WebThickness = x.Section.WebThickness,
@@ -184,19 +186,19 @@
             }
         }
 
-        private double PreassureBendingMomentY (double bendingMomentY, double resistanceMomentY)
+        private double PreassureBendingMomentY(double bendingMomentY, double resistanceMomentY)
         {
             return bendingMomentY * 100 / resistanceMomentY;
         }
 
-        private double PreassureShearForceZ(double shearForceZ, double inertialMomentY, double staticMomentY, double thickness )
+        private double PreassureShearForceZ(double shearForceZ, double inertialMomentY, double staticMomentY, double thickness)
         {
             return (shearForceZ * staticMomentY) / (thickness * inertialMomentY);
         }
 
         private double ResultFactorBendingMomentY(double preassureBendingMomentY, double designYieldStrength)
         {
-            return preassureBendingMomentY / (designYieldStrength);
+            return preassureBendingMomentY / designYieldStrength;
         }
 
         private double ResultFactorShearForceZ(double preassureShearForceZ, double designYieldStrength)
@@ -232,6 +234,7 @@
                 sb.AppendLine("OK!");
                 sb.AppendLine("The bearing capacity of the section is sufficient for bending moment and shear force!");
             }
+
             return sb.ToString().TrimEnd();
         }
 
@@ -239,6 +242,5 @@
         {
             return (int)Math.Ceiling(shearForceZ / (2 * grossAreaOfBolt * 0.9 * yieldStrength * 0.9));
         }
-
     }
 }

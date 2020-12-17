@@ -21,8 +21,7 @@
             IConcreteService concreteService,
             IReinforcementService reinforcementService,
             IReinforcementBarService reinforcementBarService,
-            IElementConcreteService elementConcreteService
-            )
+            IElementConcreteService elementConcreteService)
         {
             this.concreteService = concreteService;
             this.reinforcementService = reinforcementService;
@@ -51,7 +50,6 @@
             }
 
             string elementConcreteId = await this.elementConcreteService.CreateAsync(input, inputLoad, inputSection, id);
-            // await this.elementConcreteService.AddResultAsync(elementConcreteId);
 
             return this.RedirectToAction("Details", "Project", new { id = id });
         }

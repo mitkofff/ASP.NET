@@ -1,0 +1,56 @@
+﻿@model StructuralDesign.Web.ViewModels.ElementSteel.ResultViewModel
+
+@{
+    this.ViewData["Title"] = "Steel Beam " + Model.Name + " - Result:";
+}
+
+<h4>@this.ViewData["Title"]</h4>
+<div class="row">
+    <div class="col-md-8">
+        <div class="font-weight-bolder">Input Data:</div>
+        <hr />
+        <div class="row">
+            <div class="col-6">
+                <div class="font-weight-bold">Beam Geometry: </div>
+                <div>H = @Model.Height mm</div>
+                <div>B = @Model.Width mm</div>
+                <div>L = @Model.Length mm</div>
+            </div>
+            <div class="col-6">
+                <div class="font-weight-bold">Loads: </div>
+                <div>My = @Model.BendingMomentY kNm</div>
+                <div>Qz = @Model.ShearForceZ kN</div>
+            </div>
+        </div>
+        <div class="font-weight-bolder">Result Data:</div>
+        <hr />
+        <div class="row">
+            <div class="col-6">
+                <div class="font-weight-bold">Result Factors: </div>
+                <div>kMy = @Model.ResultFactorBendingMomentY</div>
+                <div>kQz = @Model.ResultFactorShearForceZ </div>
+            </div>
+            <div class="col-6">
+                <div class="font-weight-bold">Bolts for shear force connection: </div>
+                <div>@Model.CountOfBolt M @Model.BoltDiameter</div>
+            </div>
+        </div>
+        <hr />
+        <div class="font-weight-bold">@Model.ResultConclusion </div>
+
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-2 padding: 10px">
+        <div class="row mt-3">
+            @if (Model.SectionType == "Rectangle")
+            {
+                <img src="~/images/sys/SteelRecSect.png" class="img-fluid align-content-center" alt="Responsive image" />
+            }
+            else
+            {
+                <img src="~/images/sys/sect2TSteel.png" class="img-fluid align-content-center" alt="Responsive image" />
+            }
+        </div>
+    </div>
+</div>

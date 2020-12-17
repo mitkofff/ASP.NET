@@ -25,6 +25,8 @@
 
         public CreateSectionInputModel CreateSection { get; set; }
 
+        public string SectionTypeString => this.CreateSection.SectionType.ToString();
+
         public BoundaryCondition LeftBoundaryCondition { get; set; }
 
         public BoundaryCondition RightBoundaryCondition { get; set; }

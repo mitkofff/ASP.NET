@@ -10,24 +10,22 @@
     <div class="col-md-8">
         <form method="post">
             <div class="form-group row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <label asp-for="Name">Name:</label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name"></span>
                 </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-4">
-                    <label asp-for="SteelId">Steel:</label>
+                <div class="col-sm-2">
+                    <label asp-for="SteelId">ElementSteel:</label>
                     <select asp-for="SteelId" asp-items="steel" class="form-control"></select>
                     <span asp-validation-for="SteelId"></span>
                 </div>
-                <div class="col-sm-4">
-                    <label asp-for="MaterialBoltId">Reinforcement:</label>
+                <div class="col-sm-2">
+                    <label asp-for="MaterialBoltId">BoltSteel:</label>
                     <select asp-for="MaterialBoltId" asp-items="materialBolts" class="form-control"></select>
                     <span asp-validation-for="MaterialBoltId"></span>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-2">
                     <label asp-for="BoltId">Bar:</label>
                     <select asp-for="BoltId" asp-items="bolts" class="form-control"></select>
                     <span asp-validation-for="BoltId"></span>
@@ -66,7 +64,14 @@
     </div>
     <div class="col-md-2 padding: 10px">
         <div class="row mt-3">
-            <img id="section" src="~/images/sys/sect2TSteel.png" class="img-fluid align-content-center" alt="Responsive image" onload='UpdateImage(this);'/>
+            @if (Model.SectionTypeString == "IPE")
+            {
+                <img id="section" src="~/images/sys/sect2TSteel.png" class="img-fluid align-content-center" alt="Responsive image" onload='UpdateImage(this);' />
+            }
+            else
+            {
+                <img id="section" src="~/images/sys/SteelRecSect.png" class="img-fluid align-content-center" alt="Responsive image" onload='UpdateImage(this);' />
+            }
         </div>
     </div>
 </div>

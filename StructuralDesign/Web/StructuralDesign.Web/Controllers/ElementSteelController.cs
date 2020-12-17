@@ -19,8 +19,7 @@
         public ElementSteelController(
             ISteelService steelService,
             IBoltService boltService,
-            IElementSteelService elementSteelService
-            )
+            IElementSteelService elementSteelService)
         {
             this.steelService = steelService;
             this.boltService = boltService;
@@ -48,7 +47,6 @@
             }
 
             string elementSteelId = await this.elementSteelService.CreateAsync(input, inputLoad, inputSection, id);
-            // await this.elementConcreteService.AddResultAsync(elementConcreteId);
 
             return this.RedirectToAction("Details", "Project", new { id = id });
         }

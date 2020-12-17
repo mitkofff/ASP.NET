@@ -29,6 +29,8 @@
 
         public CreateSectionInputModel CreateSection { get; set; }
 
+        public string SectionTypeString => this.CreateSection.SectionType.ToString();
+
         public int LoadId { get; set; }
 
         public CreateLoadInputModel CreatLoad { get; set; }

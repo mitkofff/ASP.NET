@@ -1,54 +1,54 @@
 ﻿@model StructuralDesign.Web.ViewModels.ElementConcrete.CreateConcreteColumnInputModel
+@using StructuralDesign.Data.Models;
 @{ this.ViewData["Title"] = "Concrete Column";
-                var concretes = this.Model.Concretes.Select(x => new SelectListItem(x.Value, x.Key));
-                var reinforcementBar = this.Model.ReinforcementBar.Select(x => new SelectListItem(x.Value, x.Key));
-                var reinforcementMaterials = this.Model.ReinforcemenrsMaterial.Select(x => new SelectListItem(x.Value, x.Key)); }
+    var concretes = this.Model.Concretes.Select(x => new SelectListItem(x.Value, x.Key));
+    var reinforcementBar = this.Model.ReinforcementBar.Select(x => new SelectListItem(x.Value, x.Key));
+    var reinforcementMaterials = this.Model.ReinforcemenrsMaterial.Select(x => new SelectListItem(x.Value, x.Key)); }
 <h3>@this.ViewData["Title"]</h3>
 <div class="form-group row">
     <div class="col-md-8">
         <form method="post">
             <div class="form-group row">
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                     <label asp-for="Name">Name:</label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name"></span>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-2">
                     <label asp-for="ConcreteId">Concrete:</label>
                     <select asp-for="ConcreteId" asp-items="concretes" class="form-control"></select>
                     <span asp-validation-for="ConcreteId"></span>
                 </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-6">
+                <div class="col-sm-2">
                     <label asp-for="MaterialRebarId">Reinforcement:</label>
                     <select asp-for="MaterialRebarId" asp-items="reinforcementMaterials" class="form-control"></select>
                     <span asp-validation-for="MaterialRebarId"></span>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-2">
                     <label asp-for="ReinforcementBarId">Bar:</label>
                     <select asp-for="ReinforcementBarId" asp-items="reinforcementBar" class="form-control"></select>
                     <span asp-validation-for="ReinforcementBarId"></span>
                 </div>
-
+            </div>
+            <div class="form-group text-center">
+                <img id="beam" src="~/images/sys/beamFreeFree.png" class="img-fluid center-block" alt="Responsive image" />
             </div>
             <div class="form-group row">
-                <img src="~/images/sys/beamFixedFixed.png" class="img-fluid" alt="Responsive image" />
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-1">
+                <div class="col-sm-4">
                     <label asp-for="LeftBoundaryCondition">Bottom</label>
-                    <input asp-for="LeftBoundaryCondition" class="form-control" />
+                    <select asp-for="LeftBoundaryCondition" asp-items="Html.GetEnumSelectList<BoundaryCondition>()" class="form-control" id="lbc" onchange='BoundaryCondition(this);' Value="3">
+                    </select>
                     <span asp-validation-for="LeftBoundaryCondition"></span>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                     <label asp-for="Length">L, mm</label>
-                    <input asp-for="Length" class="form-control"></input>
+                    <input asp-for="Length" class="form-control" />
                     <span asp-validation-for="Length"></span>
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-4">
                     <label asp-for="RightBoundaryCondition">Top</label>
-                    <input asp-for="RightBoundaryCondition" class="form-control" />
+                    <select asp-for="RightBoundaryCondition" asp-items="Html.GetEnumSelectList<BoundaryCondition>()" class="form-control" id="rbc" onchange='BoundaryCondition(this);'>
+                    </select>
                     <span asp-validation-for="RightBoundaryCondition"></span>
                 </div>
             </div>
@@ -61,8 +61,8 @@
     </div>
     <div class="col-md-1">
     </div>
-    <div class="col-md-2 padding: 10px" >
-        <div class="row mt-3" >
+    <div class="col-md-2 padding: 10px">
+        <div class="row mt-3">
             <img src="~/images/sys/colSect.png" class="img-fluid align-content-center" alt="Responsive image" />
         </div>
         <div class="row mt-5">
@@ -72,3 +72,48 @@
 </div>
 
 
+
+<script type='text/javascript'>
+    function UpdateImage(source) {
+        var image = document.getElementById('section');
+        switch (source.value) {
+            case '5':
+                image.style.display = 'inline;'
+                image.src = "/images/sys/SteelRecSect.png";
+                document.getElementById('flangeWeb').innerHTML = "";
+                break;
+            default:
+                image.src = '';
+                image.style.display = 'none;'
+        }
+    }
+    function BoundaryCondition() {
+        var image = document.getElementById('beam');
+        if ($("#lbc").val() == "2" && $("#rbc").val() == "2") {
+            image.style.display = 'inline;'
+            image.src = "/images/sys/beamPinnedPinned.png";
+        }
+        else if ($("#lbc").val() == "3" && $("#rbc").val() == "3") {
+            image.style.display = 'inline;'
+            image.src = "/images/sys/beamFixedFixed.png";
+        }
+        else if ($("#lbc").val() == "2" && $("#rbc").val() == "3") {
+            image.style.display = 'inline;'
+            image.src = "/images/sys/beamPinnedFixed.png";
+        }
+        else if ($("#lbc").val() == "3" && $("#rbc").val() == "2") {
+            image.style.display = 'inline;'
+            image.src = "/images/sys/beamFixedPinned.png";
+        }
+        else if ($("#lbc").val() == "3" && $("#rbc").val() == "1") {
+            image.style.display = 'inline;'
+            image.src = "/images/sys/beamFixedFree.png";
+        }
+        else if ($("#lbc").val() == "1" && $("#rbc").val() == "3") {
+            image.style.display = 'inline;'
+            image.src = "/images/sys/beamFreeFixed.png";
+        }
+        else {
+            alert("The element is unstableThe element is unstable! Change boundary condition!");
+        }
+    };</script>
