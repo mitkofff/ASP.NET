@@ -1,4 +1,4 @@
-﻿@model StructuralDesign.Web.ViewModels.ElementSteel.CreateInputModel
+﻿@model StructuralDesign.Web.ViewModels.ElementSteel.EditInputModel
 @using StructuralDesign.Data.Models;
 @{ this.ViewData["Title"] = "Steel Beam";
     var steel = this.Model.Steel.Select(x => new SelectListItem(x.Value, x.Key));
@@ -34,18 +34,18 @@
                 </div>
             </div>
             <div class="form-group text-center">
-                <img id="beam" src="~/images/sys/beamFreeFree.png" class="img-fluid center-block" alt="Responsive image" />
+                <img id="beam" src="~/images/sys/beamFreeFree.png" class="img-fluid center-block" alt="Responsive image" onload='BoundaryCondition(this);'/>
             </div>
             <div class="form-group row">
                 <div class="col-sm-4">
                     <label asp-for="LeftBoundaryCondition">Bottom</label>
-                    <select asp-for="LeftBoundaryCondition" asp-items="Html.GetEnumSelectList<BoundaryCondition>()" class="form-control" id="lbc" onchange='BoundaryCondition(this);' Value="3">
+                    <select asp-for="LeftBoundaryCondition" asp-items="Html.GetEnumSelectList<BoundaryCondition>()" class="form-control" id="lbc" onchange='BoundaryCondition(this);'>
                     </select>
                     <span asp-validation-for="LeftBoundaryCondition"></span>
                 </div>
                 <div class="col-sm-4">
                     <label asp-for="Length">L, mm</label>
-                    <input asp-for="Length" class="form-control"></input>
+                    <input asp-for="Length" class="form-control" />
                     <span asp-validation-for="Length"></span>
                 </div>
                 <div class="col-sm-4">
@@ -55,8 +55,8 @@
                     <span asp-validation-for="RightBoundaryCondition"></span>
                 </div>
             </div>
-            <partial name="~/Views/Section/_SectionCreate.cshtml" model="Model.CreateSection" />
-            <partial name="~/Views/Load/_LoadCreateMyQz.cshtml" model="Model.CreatLoad" />
+            <partial name="~/Views/Section/_SectionEdit.cshtml" model="Model.CreateSection" />
+            <partial name="~/Views/Load/_LoadEditMyQz.cshtml" model="Model.CreatLoad" />
             <div class="col-sm-1">
                 <input type="submit" bootstrap-long-button="" />
             </div>
@@ -66,14 +66,15 @@
     </div>
     <div class="col-md-2 padding: 10px">
         <div class="row mt-3">
-            <img id="section" src="~/images/sys/sect2TSteel.png" class="img-fluid align-content-center" alt="Responsive image" />
+            <img id="section" src="~/images/sys/sect2TSteel.png" class="img-fluid align-content-center" alt="Responsive image" onload='UpdateImage(this);'/>
         </div>
     </div>
 </div>
 
 
 <script type='text/javascript'>
-    function UpdateImage(source) {
+    function UpdateImage() {
+        var source = document.getElementById('drpSectionType');
         var image = document.getElementById('section');
         switch (source.value) {
             case '5':
@@ -120,5 +121,4 @@
             alert("The element is unstableThe element is unstable! Change boundary condition!");
         }
     };
-
 </script>

@@ -43,6 +43,7 @@
                 BoltId = input.BoltId,
                 MaterialBoltId = input.MaterialBoltId,
                 LoadId = loadId,
+                Load = this.loadService.GetSectionById(loadId),
                 SectionId = sectionId,
                 Section = this.sectionsService.GetSectionById(sectionId),
             };
@@ -87,7 +88,8 @@
                 CreatLoad = new CreateLoadInputModel
                 {
                     Type = (StructuralDesign.Web.ViewModels.Load.LoadType)x.Load.Type,
-                    AxialForce = x.Load.AxialForce,
+                    BendingMomentY = x.Load.BendingMomentY,
+                    ShearForceZ = x.Load.ShearForceZ,
                 },
             }).FirstOrDefault();
             return elementConcrete;
@@ -95,22 +97,22 @@
 
         public async Task<string> EditAsync(string id, EditInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection)
         {
-            var elementConcrete = this.elementSteelRepository.All().Where(x => x.Id == id).FirstOrDefault();
+            var elementSteel = this.elementSteelRepository.All().Where(x => x.Id == id).FirstOrDefault();
 
-            elementConcrete.Name = input.Name;
-            elementConcrete.Length = input.Length;
-            elementConcrete.LeftBoundaryCondition = input.LeftBoundaryCondition;
-            elementConcrete.RightBoundaryCondition = input.RightBoundaryCondition;
-            elementConcrete.SteelId = input.SteelId;
-            elementConcrete.BoltId = input.BoltId;
-            elementConcrete.MaterialBoltId = input.MaterialBoltId;
+            elementSteel.Name = input.Name;
+            elementSteel.Length = input.Length;
+            elementSteel.LeftBoundaryCondition = input.LeftBoundaryCondition;
+            elementSteel.RightBoundaryCondition = input.RightBoundaryCondition;
+            elementSteel.SteelId = input.SteelId;
+            elementSteel.BoltId = input.BoltId;
+            elementSteel.MaterialBoltId = input.MaterialBoltId;
 
-            await this.sectionsService.EditAsync(elementConcrete.SectionId, inputSection);
-            await this.loadService.EditAsync(elementConcrete.LoadId, inputLoad);
+            await this.sectionsService.EditAsync(elementSteel.SectionId, inputSection);
+            await this.loadService.EditAsync(elementSteel.LoadId, inputLoad);
 
             await this.elementSteelRepository.SaveChangesAsync();
 
-            return elementConcrete.ProjectId;
+            return elementSteel.ProjectId;
         }
 
         public ResultViewModel ResultObject(string id)

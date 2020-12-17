@@ -46,5 +46,10 @@
 
             await this.loadRepository.SaveChangesAsync();
         }
+
+        public Load GetSectionById(int id)
+        {
+            return this.loadRepository.All().FirstOrDefault(x => x.Id == id);
+        }
     }
 }

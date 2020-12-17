@@ -42,6 +42,7 @@
                 ConcreteId = input.ConcreteId,
                 MaterialRebarId = input.MaterialRebarId,
                 LoadId = loadId,
+                Load = this.loadService.GetSectionById(loadId),
                 SectionId = sectionId,
                 Section = this.sectionsService.GetSectionById(sectionId),
                 ReinforcementBarId = input.ReinforcementBarId,

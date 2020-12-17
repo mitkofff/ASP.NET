@@ -15,27 +15,27 @@
         </select>
         <span asp-validation-for="Type" class="text-danger"></span>
     </div>
-    <div class="col-sm-1">
+    <div class="col-sm-1" id="axialForce">
         <label asp-for="AxialForce" class="small">N [kN]</label>
         <input asp-for="AxialForce"  value="0" class="form-control" value="0" />
         <span asp-validation-for="AxialForce" class="text-danger"></span>
     </div>
-    <div class="col-sm-1">
+    <div class="col-sm-1" id="bendingMomentY">
         <label asp-for="BendingMomentY" class="small">My [kNm]</label>
         <input asp-for="BendingMomentY" value="0" class="form-control" />
         <span asp-validation-for="BendingMomentY" class="text-danger"></span>
     </div>
-    <div class="col-sm-1">
+    <div class="col-sm-1" id="bendingMomentZ">
         <label asp-for="BendingMomentZ" class="small">Mz [kNm]</label>
         <input asp-for="BendingMomentZ" value="0" class="form-control" />
         <span asp-validation-for="BendingMomentZ" class="text-danger"></span>
     </div>
-    <div class="col-sm-1">
+    <div class="col-sm-1" id="shearForceY">
         <label asp-for="ShearForceY" class="small">Qy [kN]</label>
         <input asp-for="ShearForceY" value="0" class="form-control" />
         <span asp-validation-for="ShearForceY" class="text-danger"></span>
     </div>
-    <div class="col-sm-1">
+    <div class="col-sm-1" id="shearForceY">
         <label asp-for="ShearForceZ" class="small">Qz [kN]</label>
         <input asp-for="ShearForceZ" value="0" class="form-control" />
         <span asp-validation-for="ShearForceZ" class="text-danger"></span>

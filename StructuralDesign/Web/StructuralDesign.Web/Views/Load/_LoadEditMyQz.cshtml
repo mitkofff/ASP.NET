@@ -1,0 +1,28 @@
+﻿@model StructuralDesign.Web.ViewModels.Load.CreateLoadInputModel
+@using StructuralDesign.Web.ViewModels.Load
+
+@{
+    this.ViewData["Title"] = "Edit Loads";
+}
+
+<h4>@this.ViewData["Title"]</h4>
+
+<div class="form-group row">
+    <div class="col-sm-4">
+        <label asp-for="Type"></label>
+        <select asp-for="Type" asp-items="Html.GetEnumSelectList<LoadType>()" class="form-control">
+            <option>Select type ...</option>
+        </select>
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+    <div class="col-sm-4" id="bendingMomentY">
+        <label asp-for="BendingMomentY" class="small">My [kNm]</label>
+        <input asp-for="BendingMomentY" class="form-control" />
+        <span asp-validation-for="BendingMomentY" class="text-danger"></span>
+    </div>
+    <div class="col-sm-4" id="shearForceY">
+        <label asp-for="ShearForceZ" class="small">Qz [kN]</label>
+        <input asp-for="ShearForceZ" class="form-control" />
+        <span asp-validation-for="ShearForceZ" class="text-danger"></span>
+    </div>
+</div>
