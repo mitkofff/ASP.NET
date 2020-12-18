@@ -86,7 +86,7 @@
                 return this.View(input);
             }
 
-            return this.Redirect("/");
+            return this.RedirectToAction(nameof(this.All), 1);
         }
     }
 }

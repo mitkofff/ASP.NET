@@ -100,7 +100,7 @@
         public IList<T> GetAllProjectOfCurrentUser<T>(int page, int itemsPerPage, string ownerId)
         {
             var projects = this.projectRepositoy.All().Where(x => x.OwnerId == ownerId)
-                .OrderByDescending(x => x.ModifiedOn)
+                .OrderBy(x => x.Name)
                 .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
                 .To<T>()
                 .ToList();

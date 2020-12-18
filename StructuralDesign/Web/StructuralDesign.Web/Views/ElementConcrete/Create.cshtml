@@ -4,8 +4,7 @@
 @{ this.ViewData["Title"] = "Concrete Column";
     var concretes = this.Model.Concretes.Select(x => new SelectListItem(x.Value, x.Key));
     var reinforcementBar = this.Model.ReinforcementBar.Select(x => new SelectListItem(x.Value, x.Key));
-    var reinforcementMaterials = this.Model.ReinforcemenrsMaterial.Select(x => new SelectListItem(x.Value, x.Key)); 
-    }
+    var reinforcementMaterials = this.Model.ReinforcemenrsMaterial.Select(x => new SelectListItem(x.Value, x.Key)); }
 
 <div id="backgroundMask" class="col-8">
     <h3>@this.ViewData["Title"]</h3>
@@ -73,7 +72,7 @@
         </div>
     </div>
 </div>
-
+@section Scripts {
     <script type='text/javascript'>
         function BoundaryCondition() {
             var image = document.getElementById('beam');
@@ -104,4 +103,6 @@
             else {
                 alert("The element is unstableThe element is unstable! Change boundary condition!");
             }
-        };</script>
+        };
+    </script>
+W}

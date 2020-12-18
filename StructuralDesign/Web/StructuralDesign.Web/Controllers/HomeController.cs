@@ -52,16 +52,6 @@
             return this.View();
         }
 
-        public IActionResult AjaxDemoData()
-        {
-            return this.Json(new[]
-            {
-                new { Name= "Niki2", Date = DateTime.UtcNow.ToString("O") },
-                new { Name = "Mit", Date = DateTime.UtcNow.AddDays(1).ToString("O") },
-                new { Name = "Mit2", Date = DateTime.UtcNow.AddDays(2).ToString("O") },
-            });
-        }
-
         public IActionResult Privacy()
         {
             return this.View();

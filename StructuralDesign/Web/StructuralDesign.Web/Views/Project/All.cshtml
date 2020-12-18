@@ -46,13 +46,13 @@
             </li>
             @if (Model.PreviousPageNumber > 0)
             {
-<li class="page-item"><a class="page-link" asp-action="All" asp-route-id="@Model.PreviousPageNumber">@Model.PreviousPageNumber</a></li>
-}
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-id="@Model.PreviousPageNumber">@Model.PreviousPageNumber</a></li>
+            }
             <li class="page-item"><a class="page-link active bg-info text-white" asp-route-id="@Model.PageNumber">@Model.PageNumber</a></li>
             @if (Model.NextPageNumber <= Model.PagesCount)
             {
-<li class="page-item"><a class="page-link" ` asp-action="All" asp-route-id="@Model.NextPageNumber">@Model.NextPageNumber</a></li>
-}
+                <li class="page-item"><a class="page-link" ` asp-action="All" asp-route-id="@Model.NextPageNumber">@Model.NextPageNumber</a></li>
+            }
             <li class="page-item @if(!Model.HasNextPage) { <text>disabled</text> }">
                 <a class="page-link" asp-action="All" asp-route-id="@Model.NextPageNumber">Next</a>
             </li>

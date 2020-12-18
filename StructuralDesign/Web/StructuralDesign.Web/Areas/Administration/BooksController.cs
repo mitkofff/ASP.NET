@@ -16,12 +16,12 @@
     [Area("Administration")]
     public class BooksController : AdministrationController
     {
-
         private readonly IDeletableEntityRepository<Book> bookRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> userRepostiory;
         private readonly IBookService bookService;
 
-        public BooksController(IDeletableEntityRepository<Book> bookRepository,
+        public BooksController(
+            IDeletableEntityRepository<Book> bookRepository,
             IDeletableEntityRepository<ApplicationUser> userRepostiory,
             IBookService bookService)
         {
@@ -78,7 +78,7 @@
         }
 
         // POST: Administration/Books/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]

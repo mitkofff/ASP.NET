@@ -30,15 +30,15 @@
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (this.FlangeThickness * 2 >= this.Height)
+            if ((this.FlangeThickness * 2) >= this.Height)
             {
-                yield return new ValidationResult("The Flange thickness is greater than half height");
-            }
-            if(this.WebThickness >= this.Width)
-            {
-
+                yield return new ValidationResult("The Flange thickness should be smaller than half height of the section!");
             }
 
+            if (this.WebThickness >= this.Width)
+            {
+                yield return new ValidationResult("The Web thickness should be smaller than width of the section!");
+            }
         }
     }
 }

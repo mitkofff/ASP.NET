@@ -17,7 +17,7 @@
 
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
         {
-            return this.boltRepository.All().Select(x => new
+            return this.boltRepository.AllAsNoTracking().Select(x => new
             {
                 x.Id,
                 x.Name,

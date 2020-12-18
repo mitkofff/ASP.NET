@@ -48,7 +48,7 @@
 
             string elementSteelId = await this.elementSteelService.CreateAsync(input, inputLoad, inputSection, id);
 
-            return this.RedirectToAction("Details", "Project", new { id = id });
+            return this.RedirectToAction(nameof(this.Result), new { id = elementSteelId });
         }
 
         public IActionResult Edit(string id)

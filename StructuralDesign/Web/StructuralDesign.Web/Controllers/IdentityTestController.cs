@@ -2,10 +2,13 @@
 {
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using StructuralDesign.Data.Models;
 
+    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class IdentityTestController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;

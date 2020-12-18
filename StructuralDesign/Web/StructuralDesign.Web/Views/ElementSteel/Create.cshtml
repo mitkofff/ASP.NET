@@ -10,6 +10,7 @@
     <div class="form-group row">
         <div class="col-md-8">
             <form method="post">
+                <div asp-validation-summary="All"></div>
                 <div class="form-group row">
                     <div class="col-sm-6">
                         <label asp-for="Name">Name:</label>
@@ -73,6 +74,7 @@
     </div>
 </div>
 
+@section Scripts {
     <script type='text/javascript'>
         function UpdateImage(source) {
             var image = document.getElementById('section');
@@ -123,3 +125,4 @@
         };
 
     </script>
+}

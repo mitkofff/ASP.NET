@@ -67,65 +67,64 @@
             <div class="row mt-3">
                 @if (Model.CreateSection.SectionType.ToString() == "IPE")
                 {
-                    <img id="section" src="~/images/sys/sect2TSteel.png" class="img-fluid align-content-center" alt="Responsive image" onload='UpdateImage(this);' /> 
-                }
+    <img id="section" src="~/images/sys/sect2TSteel.png" class="img-fluid align-content-center" alt="Responsive image" onload='UpdateImage(this);' /> }
                 else
                 {
-                    <img id="section" src="~/images/sys/SteelRecSect.png" class="img-fluid align-content-center" alt="Responsive image" onload='UpdateImage(this);' />
-                }
+    <img id="section" src="~/images/sys/SteelRecSect.png" class="img-fluid align-content-center" alt="Responsive image" onload='UpdateImage(this);' />}
             </div>
         </div>
     </div>
 </div>
 
-
-<script type='text/javascript'>
-    function UpdateImage() {
-        var source = document.getElementById('drpSectionType');
-        var image = document.getElementById('section');
-        switch (source.value) {
-            case '5':
+@section Scripts {
+    <script type='text/javascript'>
+        function UpdateImage() {
+            var source = document.getElementById('drpSectionType');
+            var image = document.getElementById('section');
+            switch (source.value) {
+                case '5':
+                    image.style.display = 'inline;'
+                    image.src = "/images/sys/SteelRecSect.png";
+                    document.getElementById('flangeWeb').innerHTML = "";
+                    break;
+                case '1':
+                    image.style.display = 'inline';
+                    image.src = "/images/sys/sect2TSteel.png";
+                    break;
+                default:
+                    image.src = '';
+                    image.style.display = 'none;'
+            }
+        }
+        function BoundaryCondition() {
+            var image = document.getElementById('beam');
+            if ($("#lbc").val() == "2" && $("#rbc").val() == "2") {
                 image.style.display = 'inline;'
-                image.src = "/images/sys/SteelRecSect.png";
-                document.getElementById('flangeWeb').innerHTML = "";
-                break;
-            case '1':
-                image.style.display = 'inline';
-                image.src = "/images/sys/sect2TSteel.png";
-                break;
-            default:
-                image.src = '';
-                image.style.display = 'none;'
-        }
-    }
-    function BoundaryCondition() {
-        var image = document.getElementById('beam');
-        if ($("#lbc").val() == "2" && $("#rbc").val() == "2") {
-            image.style.display = 'inline;'
-            image.src = "/images/sys/beamPinnedPinned.png";
-        }
-        else if ($("#lbc").val() == "3" && $("#rbc").val() == "3") {
-            image.style.display = 'inline;'
-            image.src = "/images/sys/beamFixedFixed.png";
-        }
-        else if ($("#lbc").val() == "2" && $("#rbc").val() == "3") {
-            image.style.display = 'inline;'
-            image.src = "/images/sys/beamPinnedFixed.png";
-        }
-        else if ($("#lbc").val() == "3" && $("#rbc").val() == "2") {
-            image.style.display = 'inline;'
-            image.src = "/images/sys/beamFixedPinned.png";
-        }
-        else if ($("#lbc").val() == "3" && $("#rbc").val() == "1") {
-            image.style.display = 'inline;'
-            image.src = "/images/sys/beamFixedFree.png";
-        }
-        else if ($("#lbc").val() == "1" && $("#rbc").val() == "3") {
-            image.style.display = 'inline;'
-            image.src = "/images/sys/beamFreeFixed.png";
-        }
-        else {
-            alert("The element is unstableThe element is unstable! Change boundary condition!");
-        }
-    };
-</script>
+                image.src = "/images/sys/beamPinnedPinned.png";
+            }
+            else if ($("#lbc").val() == "3" && $("#rbc").val() == "3") {
+                image.style.display = 'inline;'
+                image.src = "/images/sys/beamFixedFixed.png";
+            }
+            else if ($("#lbc").val() == "2" && $("#rbc").val() == "3") {
+                image.style.display = 'inline;'
+                image.src = "/images/sys/beamPinnedFixed.png";
+            }
+            else if ($("#lbc").val() == "3" && $("#rbc").val() == "2") {
+                image.style.display = 'inline;'
+                image.src = "/images/sys/beamFixedPinned.png";
+            }
+            else if ($("#lbc").val() == "3" && $("#rbc").val() == "1") {
+                image.style.display = 'inline;'
+                image.src = "/images/sys/beamFixedFree.png";
+            }
+            else if ($("#lbc").val() == "1" && $("#rbc").val() == "3") {
+                image.style.display = 'inline;'
+                image.src = "/images/sys/beamFreeFixed.png";
+            }
+            else {
+                alert("The element is unstableThe element is unstable! Change boundary condition!");
+            }
+        };
+    </script>
+}

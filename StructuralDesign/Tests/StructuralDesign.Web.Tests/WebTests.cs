@@ -48,11 +48,11 @@
         public async Task HomePageShouldContains()
         {
             HttpClient client = this.server.CreateClient();
-            
+
             var responese = await client.GetAsync("/");
             var html = await responese.Content.ReadAsStringAsync();
             string expectedString = "<h1 class=" + "display - 4" + ">Welcome to StructuralDesign</h1>";
-            
+
             Assert.Contains(expectedString, html);
         }
     }
