@@ -2,30 +2,33 @@
 @{ 
     this.ViewData["Title"] = "Create new project";
 }
-<h3 class="align-content-md-center">@this.ViewData["Title"]</h3>
+
+<div id="backgroundMask" class="col-8">
+    <h3 class="align-content-md-center">@this.ViewData["Title"]</h3>
 
 
-<form method="post" enctype="multipart/form-data">
-    <div asp-validation-summary="All"></div>
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Location"></label>
-        <input asp-for="Location" class="form-control" />
-        <span asp-validation-for="Location" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Image"></label>
-        <input asp-for="Image" class="form-control" />
-        <span asp-validation-for="Image" class="text-danger"></span>
-    </div>
-    <input type="submit" class="btn btn-primary" />
-</form>
+    <form method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Location"></label>
+            <input asp-for="Location" class="form-control" />
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Image"></label>
+            <input asp-for="Image" class="form-control" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <input type="submit" class="btn btn-primary" />
+    </form>
+</div>

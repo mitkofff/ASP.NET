@@ -4,24 +4,44 @@
     this.ViewData["Title"] = "Concrete Column " + Model.Name + " - Result:";
 }
 
-<h3>@this.ViewData["Title"]</h3>
-<div class="row">
-    <div class="col-md-8">
-        <p>Column: @Model.Name </p>
-        <div>a = @Model.SectionHeight mm</div>
-        <div>b = @Model.SectionWidth mm</div>
-        <div>L = @Model.Length mm</div>
-        <div>lambda = @Model.SlendernessCoefficient </div>
-        <div>fi = @Model.BucklingCoefficient </div>
-        <div>As = @Model.NecessaryReinforcement cm2</div>
-        <div>m = @Model.ReinforcementPercent %</div>
-        <div>Reinforcement: @Model.CountOfReinforcementBars N @Model.ReinforcementDiameter</div>
-    </div>
-    <div class="col-md-1">
-    </div>
-    <div class="col-md-2 padding: 10px">
-        <div class="row mt-3">
-            <img src="~/images/sys/colSect.png" class="img-fluid align-content-center" alt="Responsive image" />
+<div id="backgroundMask" class="col-8">
+    <h3>@this.ViewData["Title"]</h3>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="font-weight-bolder">Input Data:</div>
+            <hr />
+            <div class="row">
+                <div class="col-6">
+                    <div>a = @Model.SectionHeight mm</div>
+                    <div>b = @Model.SectionWidth mm</div>
+                    <div>L = @Model.Length mm</div>
+                    <br />
+                </div>
+                <div class="col-6">
+                    <div class="font-weight-bold">Loads: </div>
+                    <div>N = @Model.AxialForce kNm</div>
+                </div>
+            </div>
+            <div class="font-weight-bolder">Result Data:</div>
+            <hr />
+            <div class="row">
+                <div class="col-6">
+                    <div>lambda = @Model.SlendernessCoefficient </div>
+                    <div>fi = @Model.BucklingCoefficient </div>
+                </div>
+                <div class="col-6">
+                    <div>As = @Model.NecessaryReinforcement cm2</div>
+                    <div>m = @Model.ReinforcementPercent %</div>
+                </div>
+            </div>
+            <hr />
+            <div class="font-weight-bold">Reinforcement: @Model.CountOfReinforcementBars N @Model.ReinforcementDiameter</div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-2 padding: 10px">
+            <div class="row mt-6">
+                <img src="~/images/sys/colSect.png" class="img-fluid align-content-center" alt="Responsive image" />
+            </div>
         </div>
     </div>
 </div>

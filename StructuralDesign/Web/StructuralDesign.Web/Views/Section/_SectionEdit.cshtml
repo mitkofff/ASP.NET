@@ -6,24 +6,24 @@
 <div class="form-group row">
     <div class="col-sm-3">
         <label asp-for="SectionType"></label>
-        <select asp-for="SectionType" class="form-control" onchange='UpdateImage(this);'>
+        <select class="form-control" onchange='UpdateImage(this);'>
             <option>@Model.SectionType.ToString()</option>
         </select>
         <span asp-validation-for="SectionType" class="text-danger"></span>
     </div>
     <div class="col-sm-3">
         <label asp-for="SectionName">Name</label>
-        <input asp-for="SectionName" value="Name" class="form-control" />
+        <input asp-for="SectionName" class="form-control" />
         <span asp-validation-for="SectionName" class="text-danger"></span>
     </div>
     <div class="col-sm-3">
         <label asp-for="Height">H, mm</label>
-        <input asp-for="Height" value="0" class="form-control" />
+        <input asp-for="Height" class="form-control" />
         <span asp-validation-for="Height" class="text-danger"></span>
     </div>
     <div class="col-sm-3">
         <label asp-for="Width">B, mm</label>
-        <input asp-for="Width" value="0" class="form-control" />
+        <input asp-for="Width" class="form-control" />
         <span asp-validation-for="Width" class="text-danger"></span>
     </div>
 </div>
@@ -32,12 +32,12 @@
 <div class="form-group row" id="flangeWeb">
     <div class="col-sm-3">
         <label asp-for="FlangeThickness">tf,mm</label>
-        <input asp-for="FlangeThickness" value="0" class="form-control" />
+        <input asp-for="FlangeThickness"class="form-control" />
         <span asp-validation-for="FlangeThickness" class="text-danger"></span>
     </div>
     <div class="col-sm-3">
         <label asp-for="WebThickness" id="flangeLabel">tw, mm</label>
-        <input asp-for="WebThickness" value="0" class="form-control" id="web" />
+        <input asp-for="WebThickness" class="form-control" id="web" />
         <span asp-validation-for="WebThickness" class="text-danger"></span>
     </div>
 </div>

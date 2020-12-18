@@ -2,48 +2,53 @@
 @{
     ViewBag.Title = "Satyaprakash Bhubaneswar Google Map";
 }
-
-<title>@ViewBag.Title</title>
-<div class="row">
-    <div class="col-8">
-        <form method="post">
-            <div class="col-sm-11">
-                <label asp-for="Name">Name:</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name"></span>
-            </div>
-            <div class="col-sm-11">
-                <label asp-for="Email">Email:</label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email"></span>
-            </div>
-            <div class="col-sm-11">
-                <label asp-for="Subject">Subject:</label>
-                <input asp-for="Subject" class="form-control" />
-                <span asp-validation-for="Subject"></span>
-            </div>
-            <div class="col-sm-11">
-                <label asp-for="Text">Text:</label>
-                <textarea asp-for="Text" class="form-control" rows="9"></textarea>
-                <span asp-validation-for="Text"></span>
-            </div>
-            <div class="col-sm-11">
-                <input type="submit" class="btn badge-primary fa-align-right" />
-            </div>
-        </form>
+<div id="backgroundMask" class="col-8">
+    <br />
+    <title>@ViewBag.Title</title>
+    <div class="row">
+        <div class="col-8">
+            <form method="post">
+                <div class="col-sm-11">
+                    <label asp-for="Name">Name:</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div class="col-sm-11">
+                    <label asp-for="Email">Email:</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="col-sm-11">
+                    <label asp-for="Subject">Subject:</label>
+                    <input asp-for="Subject" class="form-control" />
+                    <span asp-validation-for="Subject"></span>
+                </div>
+                <div class="col-sm-11">
+                    <label asp-for="Text">Text:</label>
+                    <textarea asp-for="Text" class="form-control" rows="9"></textarea>
+                    <span asp-validation-for="Text"></span>
+                </div>
+                <div class="col-sm-11">
+                    <input type="submit" class="btn badge-primary fa-align-right" />
+                </div>
+            </form>
+        </div>
+        <div class="col-4">
+            <fieldset>
+                <div id="googleMap" style="height:400px;width:100%;"></div>
+                <script>
+                    function myMap() {
+                        var myCenter = new google.maps.LatLng(42.682334, 23.253185);
+                        var mapProp = { center: myCenter, zoom: 16, scrollwheel: false, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
+                        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                        var marker = new google.maps.Marker({ position: myCenter });
+                        marker.setMap(map);
+                    }
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP1lnuRya7dEJVBOX3QqdYkzbPb2RvE8k&callback=myMap"></script>
+            </fieldset>
+            <div>9 Akad. Konstantin Pashev, Str</div>
+            <div>1000, Sofia</div>
+        </div>
     </div>
-    <div class="col-4">
-        <fieldset>
-            <div id="googleMap" style="height:400px;width:100%;"></div>
-            <script>
-                function myMap() {
-                    var myCenter = new google.maps.LatLng(42.682334, 23.253185);
-                    var mapProp = { center: myCenter, zoom: 16, scrollwheel: false, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
-                    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-                    var marker = new google.maps.Marker({ position: myCenter });
-                    marker.setMap(map);
-                }
-            </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP1lnuRya7dEJVBOX3QqdYkzbPb2RvE8k&callback=myMap"></script>
-        </fieldset>
-    </div>
+</div>

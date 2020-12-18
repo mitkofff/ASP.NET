@@ -140,7 +140,7 @@
                 LeftBoundaryCondition = x.LeftBoundaryCondition.ToString(),
                 RightBoundaryCondition = x.RightBoundaryCondition.ToString(),
                 ShearForceZ = x.Load.ShearForceZ,
-                BendingMomentY = x.Load.BendingMomentZ,
+                BendingMomentY = x.Load.BendingMomentY,
                 BoltDiameter = x.Bolt.NominalDiameter,
                 BoltGrossArea = x.Bolt.GrossArea,
                 YieldStrengthForBolt = x.MaterialBolt.YieldStrength,

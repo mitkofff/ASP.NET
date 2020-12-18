@@ -5,8 +5,10 @@
     @{ this.ViewData["Title"] = "Home Page"; }
     <div class="bg">
         <div id="hello">
-            <h1 class="display-4"> Welcome to @GlobalConstants.SystemName! </h1>
-            <h2>Create your projects ... </h2>
+            <a  asp-controller="Project" asp-action="All" class="text-dark">
+                <h1 class="display-4"> Welcome to @GlobalConstants.SystemName! </h1>
+                <h2>Create your projects ... </h2>
+            </a>
         </div>
     </div>
     <div class="">
