@@ -48,6 +48,16 @@
             return this.height * Math.Pow(this.width, 2) / 6;
         }
 
+        public double StaticMomentY()
+        {
+            return this.width * this.height * 0.5 * this.height * 0.25;
+        }
+
+        public double StaticMomentZ()
+        {
+            return this.height * this.width * 0.5 * this.width * 0.25;
+        }
+
         public double Height
         {
             get

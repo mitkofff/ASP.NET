@@ -42,6 +42,5 @@
         public CreateLoadInputModel CreatLoad { get; set; }
 
         public CreateSectionInputModel CreateSection { get; set; }
-
     }
 }

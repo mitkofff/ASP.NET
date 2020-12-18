@@ -1,10 +1,10 @@
 ﻿namespace StructuralDesign.Services.Data
 {
+    using System.Linq;
+
     using StructuralDesign.Data.Common.Repositories;
     using StructuralDesign.Data.Models;
     using StructuralDesign.Services.Data.Models;
-    using StructuralDesign.Web.ViewModels.Home;
-    using System.Linq;
 
     public class GetCountsService : IGetCountsService
     {

@@ -1,12 +1,13 @@
 ﻿namespace StructuralDesign.Web.Controllers
 {
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
     using CloudinaryDotNet;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using StructuralDesign.Services.Data;
     using StructuralDesign.Web.ViewModels.Book;
-    using System.Security.Claims;
-    using System.Threading.Tasks;
 
     [Authorize]
     public class LibraryController : Controller
@@ -29,7 +30,6 @@
 
             return this.View(viewModel);
         }
-
 
         public IActionResult Read(int id)
         {
@@ -74,6 +74,5 @@
 
             return this.Redirect("/");
         }
-
     }
 }

@@ -17,11 +17,11 @@
 
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
         {
-            return this.steelRepository.All().Select(x => new
+            return this.steelRepository.AllAsNoTracking().Select(x => new
             {
                 x.Id,
                 x.Name,
-            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name)).OrderBy(x => x.Value);
         }
     }
 }

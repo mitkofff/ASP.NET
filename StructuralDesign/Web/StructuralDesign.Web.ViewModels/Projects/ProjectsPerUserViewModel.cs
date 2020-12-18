@@ -12,7 +12,7 @@
 
         public string Description { get; set; }
 
-        public string PartialDescription => this.Description.Length < 30 ? this.Description : this.Description.Substring(0, 30) + "...";
+        public string PartialDescription => this.Description.Length < 60 ? this.Description : this.Description.Substring(0, 60) + "...";
 
         public string Location { get; set; }
 

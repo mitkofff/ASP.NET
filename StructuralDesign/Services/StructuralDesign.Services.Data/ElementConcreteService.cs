@@ -76,13 +76,15 @@
                 ConcreteId = x.ConcreteId,
                 MaterialRebarId = x.MaterialRebarId,
                 ProjectId = x.ProjectId,
+                SectionId = x.SectionId,
                 CreateSection = new CreateSectionInputModel
                 {
+                    SectionType = StructuralDesign.Web.ViewModels.Section.SectionType.Rectangle,
                     SectionName = x.Section.Name,
-                    SectionType = (StructuralDesign.Web.ViewModels.Section.SectionType)x.Section.Type,
                     Height = x.Section.Height,
                     Width = x.Section.Width,
                 },
+                LoadId = x.LoadId,
                 CreatLoad = new CreateLoadInputModel
                 {
                     Type = (StructuralDesign.Web.ViewModels.Load.LoadType)x.Load.Type,
@@ -132,7 +134,7 @@
 
             var slendernessCoefficient = this.SlendernessCoefficient(result.Length, result.SectionHeight, result.SectionHeight, result.LeftBoundaryCondition, result.RightBoundaryCondition);
             var bucklingCoefficient = this.BucklingCoefficient(slendernessCoefficient);
-            var necessaryReinforcement = this.NecessaryReinforcement(bucklingCoefficient, result.AxialForce, result.AxialForce, result.ConcreteDesignCompressiveStrength, result.DesignReinforcementStrength);
+            var necessaryReinforcement = this.NecessaryReinforcement(bucklingCoefficient, result.SectionArea, result.AxialForce, result.ConcreteDesignCompressiveStrength, result.DesignReinforcementStrength);
             var countOfReinforcementBars = this.CountOfReinforcementBars(necessaryReinforcement, result.ReinforcementBarArea);
 
             result.SlendernessCoefficient = Math.Round(slendernessCoefficient, 3);
@@ -190,39 +192,39 @@
         {
             double bucklingCoefficient = 0;
 
-            if (slendernessCoefficient < 6)
+            if (slendernessCoefficient <= 6)
             {
                 bucklingCoefficient = 0.92;
             }
-            else if (slendernessCoefficient > 6 && slendernessCoefficient < 8)
+            else if (slendernessCoefficient > 6 && slendernessCoefficient <= 8)
             {
                 bucklingCoefficient = ((0.92 - 0.91) * (8 - slendernessCoefficient) / (8 - 6)) + 0.91;
             }
-            else if (slendernessCoefficient > 8 && slendernessCoefficient < 10)
+            else if (slendernessCoefficient > 8 && slendernessCoefficient <= 10)
             {
                 bucklingCoefficient = ((0.91 - 0.90) * (10 - slendernessCoefficient) / (10 - 8)) + 0.90;
             }
-            else if (slendernessCoefficient > 10 && slendernessCoefficient < 12)
+            else if (slendernessCoefficient > 10 && slendernessCoefficient <= 12)
             {
                 bucklingCoefficient = ((0.90 - 0.88) * (12 - slendernessCoefficient) / (12 - 10)) + 0.88;
             }
-            else if (slendernessCoefficient > 12 && slendernessCoefficient < 14)
+            else if (slendernessCoefficient > 12 && slendernessCoefficient <= 14)
             {
                 bucklingCoefficient = ((0.88 - 0.84) * (14 - slendernessCoefficient) / (14 - 12)) + 0.84;
             }
-            else if (slendernessCoefficient > 14 && slendernessCoefficient < 16)
+            else if (slendernessCoefficient > 14 && slendernessCoefficient <= 16)
             {
                 bucklingCoefficient = ((0.84 - 0.79) * (16 - slendernessCoefficient) / (16 - 14)) + 0.79;
             }
-            else if (slendernessCoefficient > 16 && slendernessCoefficient < 18)
+            else if (slendernessCoefficient > 16 && slendernessCoefficient <= 18)
             {
                 bucklingCoefficient = ((0.79 - 0.74) * (18 - slendernessCoefficient) / (18 - 16)) + 0.74;
             }
-            else if (slendernessCoefficient > 18 && slendernessCoefficient < 20)
+            else if (slendernessCoefficient > 18 && slendernessCoefficient <= 20)
             {
                 bucklingCoefficient = ((0.74 - 0.67) * (20 - slendernessCoefficient) / (20 - 18)) + 0.67;
             }
-            else if (slendernessCoefficient > 20 && slendernessCoefficient < 20)
+            else if (slendernessCoefficient > 20)
             {
                 bucklingCoefficient = 0.01;
             }
@@ -232,7 +234,12 @@
 
         private double NecessaryReinforcement(double bucklingCoefficient, double sectionArea, double axialForce, double designCompressiveStrength, double designReinforcementStrength)
         {
-            double necessaryReinforcement = axialForce < 0 ? ((axialForce / bucklingCoefficient) - (bucklingCoefficient * 0.85 * ( sectionArea / 100 ) * designCompressiveStrength)) / designReinforcementStrength : axialForce / designReinforcementStrength;
+            double necessaryReinforcement = axialForce >= 0 ? axialForce / designReinforcementStrength : ((Math.Abs(axialForce) / bucklingCoefficient) - (bucklingCoefficient * 0.85 * (sectionArea / 100 ) * designCompressiveStrength)) / designReinforcementStrength;
+            if (necessaryReinforcement < 0)
+            {
+                necessaryReinforcement = 0;
+            }
+
             return necessaryReinforcement;
         }
 
@@ -257,7 +264,7 @@
             return sb.ToString().TrimEnd();
         }
 
-        private int CountOfReinforcementBars (double necessaryReinforcement, double reinforcementBarArea)
+        private int CountOfReinforcementBars(double necessaryReinforcement, double reinforcementBarArea)
         {
             int barsNumber = (int)Math.Ceiling(necessaryReinforcement / (reinforcementBarArea * 0.01));
             return barsNumber;

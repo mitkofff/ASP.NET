@@ -65,7 +65,7 @@
         </div>
         <div class="col-md-2 padding: 10px">
             <div class="row mt-3">
-                @if (Model.SectionTypeString == "IPE")
+                @if (Model.CreateSection.SectionType.ToString() == "IPE")
                 {
                     <img id="section" src="~/images/sys/sect2TSteel.png" class="img-fluid align-content-center" alt="Responsive image" onload='UpdateImage(this);' /> 
                 }

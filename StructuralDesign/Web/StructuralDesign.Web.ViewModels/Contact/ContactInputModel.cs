@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace StructuralDesign.Web.ViewModels.Contact
+﻿namespace StructuralDesign.Web.ViewModels.Contact
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class ContactInputModel
     {
         [MinLength(3)]

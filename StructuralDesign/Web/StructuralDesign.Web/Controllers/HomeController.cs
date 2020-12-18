@@ -1,20 +1,14 @@
 ﻿namespace StructuralDesign.Web.Controllers
 {
+    using System;
     using System.Diagnostics;
 
-    using Microsoft.AspNetCore.Mvc;
-    using StructuralDesign.Data;
-    using StructuralDesign.Web.ViewModels;
-    using System.Linq;
-    using StructuralDesign.Web.ViewModels.Home;
-    using StructuralDesign.Data.Common.Repositories;
-    using StructuralDesign.Data.Models;
-    using StructuralDesign.Services.Data;
-    using System;
-    using Microsoft.AspNetCore.Hosting;
     using CloudinaryDotNet;
-    using CloudinaryDotNet.Actions;
-    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+    using StructuralDesign.Services.Data;
+    using StructuralDesign.Web.ViewModels;
+    using StructuralDesign.Web.ViewModels.Home;
 
     public class HomeController : BaseController
     {
@@ -22,8 +16,10 @@
         private readonly IWebHostEnvironment hostingEnvironment;
         private readonly Cloudinary cloudinary;
 
-        public HomeController(IGetCountsService countsService,
-            IWebHostEnvironment hostingEnvironment, Cloudinary cloudinary)
+        public HomeController(
+            IGetCountsService countsService,
+            IWebHostEnvironment hostingEnvironment, 
+            Cloudinary cloudinary)
         {
             this.countsService = countsService;
             this.hostingEnvironment = hostingEnvironment;
@@ -32,7 +28,7 @@
 
         public IActionResult Index()
         {
-            Debug.WriteLine(hostingEnvironment.EnvironmentName);
+            Debug.WriteLine(this.hostingEnvironment.EnvironmentName);
             var countsDto = this.countsService.GetCounts();
             var viewModel = new IndexViewModel
             {
@@ -45,17 +41,6 @@
 
             return this.View(viewModel);
         }
-        /*
-        public async Task<IActionResult> UploadPic()
-        {
-            var uploadParams = new ImageUploadParams()
-            {
-                File = new FileDescription(@"D:\pics\solun_2015\IMG_20151031_151746.jpg"),
-            };
-            var uploadResult = await this.cloudinary.UploadAsync(uploadParams);
-
-            return this.Redirect("/");
-        }*/
 
         public IActionResult DataDemo(int id, string name, DateTime time)
         {
@@ -72,8 +57,8 @@
             return this.Json(new[]
             {
                 new { Name= "Niki2", Date = DateTime.UtcNow.ToString("O") },
-                new { Name = "Mit", Date = DateTime.UtcNow.AddDays(1).ToString("O")},
-                new { Name = "Mit2", Date = DateTime.UtcNow.AddDays(2).ToString("O")},
+                new { Name = "Mit", Date = DateTime.UtcNow.AddDays(1).ToString("O") },
+                new { Name = "Mit2", Date = DateTime.UtcNow.AddDays(2).ToString("O") },
             });
         }
 

@@ -12,16 +12,17 @@
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<ApplicationRole> roleManager;
 
-        public IdentityTestController(UserManager<ApplicationUser> userManager,
-                SignInManager<ApplicationUser> signInManager, 
-                RoleManager<ApplicationRole> roleManager)
+        public IdentityTestController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager, 
+            RoleManager<ApplicationRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             var user = new ApplicationUser
             {
@@ -36,13 +37,13 @@
             return this.Json(result);
         }
 
-        public async Task<IActionResult> Login()
+        public IActionResult Login()
         {
             var result = this.signInManager.PasswordSignInAsync("mitkofff", "241897-aA", true, true);
             return this.Json("ok");
         }
 
-        public async Task<IActionResult> LogOut()
+        public IActionResult LogOut()
         {
             var result = this.signInManager.SignOutAsync();
             return this.Redirect("/");

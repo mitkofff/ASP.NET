@@ -45,6 +45,10 @@
 
         public double InertialRadiusZ { get; set; }
 
+        public double StaticMomentY { get; set; }
+
+        public double StaticMomentZ { get; set; }
+
         public virtual ICollection<ElementFoundation> Foundations { get; set; }
 
         public virtual ICollection<ElementSteel> SteelElements { get; set; }

@@ -8,8 +8,8 @@
 <div class="form-group row">
     <div class="col-sm-3">
         <label asp-for="SectionType"></label>
-        <select asp-for="SectionType" class="form-control" id="drpSectionType">
-            <option>Rectangle</option>
+        <select asp-for="SectionType" asp-items="Html.GetEnumSelectList<SectionType>()" class="form-control" id="drpSectionType">
+            <option>Select type ...</option>
         </select>
         <span asp-validation-for="SectionType" class="text-danger"></span>
     </div>

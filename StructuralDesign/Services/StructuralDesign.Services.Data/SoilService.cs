@@ -17,7 +17,7 @@
 
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
         {
-            return this.soilsRepository.All().Select(x => new
+            return this.soilsRepository.AllAsNoTracking().Select(x => new
             {
                 x.Id,
                 x.Name,

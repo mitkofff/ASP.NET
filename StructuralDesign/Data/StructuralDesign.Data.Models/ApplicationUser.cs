@@ -3,11 +3,10 @@ namespace StructuralDesign.Data.Models
 {
     using System;
     using System.Collections.Generic;
-
-    using StructuralDesign.Data.Common.Models;
+    using System.ComponentModel.DataAnnotations;
 
     using Microsoft.AspNetCore.Identity;
-    using System.ComponentModel.DataAnnotations;
+    using StructuralDesign.Data.Common.Models;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {

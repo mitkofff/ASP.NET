@@ -85,6 +85,8 @@
                     SectionType = (StructuralDesign.Web.ViewModels.Section.SectionType)x.Section.Type,
                     Height = x.Section.Height,
                     Width = x.Section.Width,
+                    FlangeThickness = x.Section.FlangeThickness,
+                    WebThickness = x.Section.WebThickness,
                 },
                 CreatLoad = new CreateLoadInputModel
                 {
@@ -112,6 +114,7 @@
             await this.loadService.EditAsync(elementSteel.LoadId, inputLoad);
 
             await this.elementSteelRepository.SaveChangesAsync();
+            await this.ResultJson(elementSteel.Id);
 
             return elementSteel.ProjectId;
         }
@@ -134,7 +137,7 @@
                 WebThickness = x.Section.WebThickness,
                 InertialMomentY = x.Section.InertialMomentY,
                 ResistanceMomentY = x.Section.ResistanceMomentY,
-                StaticMomentY = 5,
+                StaticMomentY = x.Section.StaticMomentY,
                 YieldStrengthForElement = x.Steel.YieldStrength,
                 Length = x.Length,
                 LeftBoundaryCondition = x.LeftBoundaryCondition.ToString(),
@@ -188,12 +191,12 @@
 
         private double PreassureBendingMomentY(double bendingMomentY, double resistanceMomentY)
         {
-            return bendingMomentY * 100 / resistanceMomentY;
+            return bendingMomentY * 100 / (resistanceMomentY / 1000);
         }
 
         private double PreassureShearForceZ(double shearForceZ, double inertialMomentY, double staticMomentY, double thickness)
         {
-            return (shearForceZ * staticMomentY) / (thickness * inertialMomentY);
+            return (shearForceZ * staticMomentY / 1000) / (thickness / 10 * inertialMomentY / 10000);
         }
 
         private double ResultFactorBendingMomentY(double preassureBendingMomentY, double designYieldStrength)

@@ -15,5 +15,9 @@
         public double InertialRadiusY();
 
         public double InertialRadiusZ();
+
+        public double StaticMomentY();
+
+        public double StaticMomentZ();
     }
 }

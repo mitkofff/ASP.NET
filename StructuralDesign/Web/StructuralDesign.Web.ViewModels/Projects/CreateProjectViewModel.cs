@@ -8,7 +8,7 @@
     public class CreateProjectViewModel
     {
         [Required]
-        [StringLength(30, MinimumLength = 3)]
+        [StringLength(20, MinimumLength = 3)]
         public string Name { get; set; }
 
         [Required]

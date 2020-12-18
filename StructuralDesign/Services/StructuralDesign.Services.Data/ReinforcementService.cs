@@ -15,9 +15,9 @@
             this.reinforcementRepository = reinforcementRepository;
         }
 
-        IEnumerable<KeyValuePair<string, string>> IReinforcementService.GetAllElementsAsKeyValue()
+        public IEnumerable<KeyValuePair<string, string>> GetAllElementsAsKeyValue()
         {
-            return this.reinforcementRepository.All().Select(x => new
+            return this.reinforcementRepository.AllAsNoTracking().Select(x => new
             {
                 x.Id,
                 x.Name,

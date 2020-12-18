@@ -24,7 +24,7 @@
 
         public double InertialMomentY()
         {
-            return (this.webThickness * Math.Pow(this.height - (this.flangeThickness * 2), 3) / 12) + (2 * (this.width * this.flangeThickness * Math.Pow((this.height / 2) - (this.flangeThickness /2), 2)));
+            return (this.webThickness * (Math.Pow((this.height - (this.flangeThickness * 2)), 3)) / 12) + 2 * this.width * Math.Pow(this.flangeThickness, 3) / 12 + (2 * (this.width * this.flangeThickness * Math.Pow((this.height / 2) - (this.flangeThickness / 2), 2)));
         }
 
         public double InertialMomentZ()
@@ -50,6 +50,16 @@
         public double ResistanceMomentZ()
         {
             return this.InertialMomentZ() / (this.width / 2);
+        }
+
+        public double StaticMomentY()
+        {
+            return (this.width * this.flangeThickness * (this.height - this.flangeThickness) * 0.5) + (this.webThickness * ((this.height * 0.5) - this.flangeThickness) * ((this.height * 0.5) - this.flangeThickness) * 0.5);
+        }
+
+        public double StaticMomentZ()
+        {
+            return (this.width * 0.5 * this.flangeThickness * this.width * 0.25 * 2) + ((this.height - (this.flangeThickness * 2)) * this.webThickness * 0.5 * this.webThickness * 0.25);
         }
 
         public double Height
