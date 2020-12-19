@@ -49,5 +49,11 @@
         public double PressureVertex3 { get; set; }
 
         public double PressureVertex4 { get; set; }
+
+        public double AveragePressureLimit { get; set; }
+
+        public double EdgePressureLimit { get; set; }
+
+        public double VertexPressureLimit { get; set; }
     }
 }

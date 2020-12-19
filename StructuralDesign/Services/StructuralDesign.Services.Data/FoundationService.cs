@@ -121,6 +121,9 @@
                 PressureVertex2 = Math.Round(double.Parse(x.Result.Split("PRESSURES: ", StringSplitOptions.RemoveEmptyEntries)[1].Split(", ", StringSplitOptions.RemoveEmptyEntries)[3]), 1),
                 PressureVertex3 = Math.Round(double.Parse(x.Result.Split("PRESSURES: ", StringSplitOptions.RemoveEmptyEntries)[1].Split(", ", StringSplitOptions.RemoveEmptyEntries)[4]), 1),
                 PressureVertex4 = Math.Round(double.Parse(x.Result.Split("PRESSURES: ", StringSplitOptions.RemoveEmptyEntries)[1].Split(", ", StringSplitOptions.RemoveEmptyEntries)[5]), 1),
+                AveragePressureLimit = 250,
+                EdgePressureLimit = 250 * 1.3,
+                VertexPressureLimit = 250 * 1.5,
             }).FirstOrDefault();
 
             return foundation;
@@ -129,7 +132,7 @@
         public async Task<string> EditAsync(EditFoundationInputModel input, CreateLoadInputModel inputLoad, CreateSectionInputModel inputSection, string id)
         {
             var foundation = this.foundationRepository.All().FirstOrDefault(x => x.Id == id);
-
+            inputSection.SectionType = Web.ViewModels.Section.SectionType.Rectangle;
             int loadId = this.loadService.CreateAsync(inputLoad).Result;
             int sectionId = this.sectionsService.CreateAsync(inputSection).Result;
             foundation.Name = input.Name;

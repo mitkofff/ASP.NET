@@ -81,7 +81,7 @@
             }
 
             var projectId = await this.foundationService.EditAsync(input, inputLoad, inputSection, id);
-
+            await this.foundationService.AddResultAsync(id);
             return this.RedirectToAction("Details", "Project", new { id = projectId });
         }
 
